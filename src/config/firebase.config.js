@@ -1,6 +1,8 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { getAuth } from "firebase/auth";
+import { getDatabase } from "firebase/database";
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
@@ -13,14 +15,19 @@ const firebaseConfig = {
     storageBucket: "super-forms-aa3c8.appspot.com",
     messagingSenderId: "818081165250",
     appId: "1:818081165250:web:7ffc00bd0eb3d4b291305b",
-    measurementId: "G-BV1VNKHS5R"
+    measurementId: "G-BV1VNKHS5R",
+    databaseURL: "https://super-forms-aa3c8-default-rtdb.asia-southeast1.firebasedatabase.app/"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-
-
-module.exports = {
-    app
+const db = getDatabase(app);
+const auth = getAuth(app);
+// console.log(auth);
+export {
+    app,
+    auth,
+    db
 }
+// export default auth;
