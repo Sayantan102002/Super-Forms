@@ -1,16 +1,92 @@
-import React from 'react'
-import { useSelector } from 'react-redux';
-import NoForm from '../Forms/NoForm';
+import React, { useEffect, useState } from 'react'
+import DefaultView from '../Forms/DefaultView';
 import NavBar from '../NavBar';
-
+import { ref, onValue, set, push, remove } from "firebase/database";
+import { db } from "../../config/firebase.config";
+import { useDispatch, useSelector } from 'react-redux';
+import { CircularProgress } from '@mui/material';
+import { Box, Container, height } from '@mui/system';
+import Dashboard from '../Forms/Dashboard';
+import { format, formatDistance, formatRelative, subDays } from 'date-fns'
 export default function Home() {
     const { user } = useSelector((state) => (state.auth));
     console.log(user, "user");
-    let form = [];
+    const { formIds } = useSelector((state) => (state.forms));
+    const [loading, setLoading] = useState(true);
+    const [formName, setFormName] = useState(null);
+    const [formDesc, setFormDesc] = useState(null);
+    const dispatch = useDispatch();
+    const getForms = () => {
+        // setLoading(true);
+        const formref = ref(db, 'forms/' + user?.uid);
+        onValue(formref, (snapshot) => {
+            const data = snapshot.val();
+            let formIds = data ? [...Object?.keys(data)] : [];
+            // console.log(Object?.keys(data), 'forms');
+            dispatch({
+                type: 'AddForm',
+                payload: {
+                    formIds,
+                    formsDictionary: data
+                }
+            })
+            setLoading(false);
+        });
+    }
+    const createForm = () => {
+        setLoading(true);
+        const formref = ref(db, 'forms/' + user?.uid);
+        push(formref, {
+            name: user?.displayName,
+            email: user?.email,
+            form: {
+                formName,
+                formDesc,
+                createdBy: user?.displayName,
+                createdAt: formatRelative(subDays(new Date(), 3), new Date())
+            },
+        });
+
+        setLoading(false);
+    }
+    const deleteForm = (formId) => {
+        setLoading(true);
+        const formref = ref(db, 'forms/' + formId);
+        remove(formref);
+        setLoading(false);
+    }
+    useEffect(() => {
+        getForms();
+    }, [loading, user])
     return (
         <>
             <NavBar />
-            {!(form.length > 0) ? <NoForm /> : null}
+            {loading ? <Container maxWidth="xl">
+                <Box sx={{ height: '90vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+                    <CircularProgress />
+                </Box>
+            </Container> :
+                <>{!(formIds.length > 0) ?
+                    <DefaultView
+                        createForm={createForm}
+                        loading={loading}
+                        setLoading={setLoading}
+                        setFormName={setFormName}
+                        setFormDesc={setFormDesc}
+                        formName={formName}
+                        formDesc={formDesc}
+                    />
+                    : <Dashboard
+                        createForm={createForm}
+                        loading={loading}
+                        setLoading={setLoading}
+                        setFormName={setFormName}
+                        setFormDesc={setFormDesc}
+                        formName={formName}
+                        formDesc={formDesc}
+                        deleteForm={deleteForm}
+                    />}
+                </>}
         </>
     )
 }
