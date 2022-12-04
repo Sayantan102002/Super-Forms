@@ -1,5 +1,5 @@
 import React from "react";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword } from "firebase/auth";
 import {
   Box,
   Container,
@@ -16,10 +16,33 @@ import Typography from "@mui/material/Typography";
 // import NavBar from '../NavBar';
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import GoogleBtn from "../Helper/GoogleBtn";
+import { auth } from "../../config/firebase.config";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 
-function SingIn() {
-  const SignIn = async () => {};
+function SingUp() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const SignUp =  (email, password) => {
 
+  createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+
+      // Signed in
+      const user = userCredential.user;
+
+      dispatch({
+        type: "SET_AUTH_USER",
+        user,
+    });
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+      // ..
+    })};
   return (
     <div>
       <Container maxWidth="xl" minWidth="xl">
@@ -55,7 +78,7 @@ function SingIn() {
                 flexDirection: "column",
               }}
             >
-              <Typography variant="h5">Sign-In</Typography>
+              <Typography variant="h5">Sign-Up</Typography>
               <Avatar className="Avatar" sx={{ bgcolor: "blue" }}>
                 <LockOutlinedIcon />
               </Avatar>
@@ -65,6 +88,8 @@ function SingIn() {
                 label="Email"
                 variant="outlined"
                 placeholder="Enter Your Email"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
                 sx={{ width: "70%", margin: "10px" }}
               />
               <TextField
@@ -72,42 +97,46 @@ function SingIn() {
                 label="Password"
                 variant="outlined"
                 placeholder="Enter Your Passwod"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
                 type={"password"}
                 sx={{ width: "70%", marginBottom: "10px" }}
               />
-              {/* <TextField
+              <TextField
                 id="outlined-basic"
                 label="Confirm Your Passwod"
                 variant="outlined"
                 placeholder="Confirm Your Passwod"
                 type={"password"}
                 sx={{ width: "70%", marginBottom: "0px" }}
-              /> */}
+              />
 
               <Typography
                 sx={{
-                  margin: "0, auto, 0, auto",
+                  marginTop: "1px",
+                  marginRight: "auto",
+                  marginLeft: "3.9rem",
                   cursor: "pointer",
                 }}
               >
-                <Link sx={{ textDecoration: "none" }}>Forgot Password?</Link>
+                {/* <Link sx={{ textDecoration: "none" }}>Forgot Password?</Link> */}
               </Typography>
 
               <Button
                 variant="contained"
                 sx={{
                   marginTop: "10px",
-                  marginBottom: "15px",
                   width: "50%",
                   maxHeight: "35px",
                   flex: "1",
                 }}
+                onClick={SignUp(email, password)}
               >
                 {" "}
-                Sign In
+                Sign UP
               </Button>
 
-              {/* <Typography
+              <Typography
                 sx={{
                   marginTop: "10px",
                   cursor: "pointer",
@@ -115,12 +144,11 @@ function SingIn() {
                 }}
               >
                 Already Have An Account?
-                <Link sx={{ textDecoration: "none" }}> Sign Up</Link>
-              </Typography> */}
+                <Link sx={{ textDecoration: "none" }}> Sign In</Link>
+              </Typography>
               <GoogleBtn
                 sx={{ marginBottom: "3px", color: "white", bgcolor: "blue" }}
               />
-
             </Paper>
           </Box>
         </Box>
@@ -128,4 +156,4 @@ function SingIn() {
     </div>
   );
 }
-export default SingIn;
+export default SingUp;
