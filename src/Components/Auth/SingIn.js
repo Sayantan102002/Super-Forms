@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import {
   Box,
@@ -16,9 +16,30 @@ import Typography from "@mui/material/Typography";
 // import NavBar from '../NavBar';
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import GoogleBtn from "../Helper/GoogleBtn";
+import { auth } from "../../config/firebase.config";
+import { useDispatch } from "react-redux";
 
-function SingIn() {
-  const SignIn = async () => {};
+function SingIn(props) {
+//   const SignIn = () => {};
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const SignIn =  (email, password) => {
+  
+  signInWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+      // Signed in
+      const user = userCredential.user;
+      dispatch({
+        type: "SET_AUTH_USER",
+        user,
+    });
+      // ...
+    })
+    .catch((error) => {
+      const errorCode = error.code;
+      const errorMessage = error.message;
+    })};
 
   return (
     <div>
@@ -35,7 +56,7 @@ function SingIn() {
         >
           <Box
             sx={{
-              // bgcolor: '#000',
+            //   bgcolor: '#111',
               maxwidth: "90vw",
               minWidth: "25vw",
               height: "65vh",
@@ -65,6 +86,8 @@ function SingIn() {
                 label="Email"
                 variant="outlined"
                 placeholder="Enter Your Email"
+                value={email}
+                onChange={(event) => setEmail(event.target.value)}
                 sx={{ width: "70%", margin: "10px" }}
               />
               <TextField
@@ -72,6 +95,8 @@ function SingIn() {
                 label="Password"
                 variant="outlined"
                 placeholder="Enter Your Passwod"
+                value={password}
+                onChange={(event) => setPassword(event.target.value)}
                 type={"password"}
                 sx={{ width: "70%", marginBottom: "10px" }}
               />
@@ -102,25 +127,26 @@ function SingIn() {
                   maxHeight: "35px",
                   flex: "1",
                 }}
+                onClick={SignIn(email, password)}
               >
                 {" "}
                 Sign In
               </Button>
 
-              {/* <Typography
+              <Typography
                 sx={{
                   marginTop: "10px",
                   cursor: "pointer",
                   marginBottom: "9px",
                 }}
               >
-                Already Have An Account?
-                <Link sx={{ textDecoration: "none" }}> Sign Up</Link>
-              </Typography> */}
+                Don't Have An Account?
+
+                <Button sx={{ textDecoration: "none" }} onClick={ props.setValue(0)}> Sign Up</Button>
+              </Typography>
               <GoogleBtn
                 sx={{ marginBottom: "3px", color: "white", bgcolor: "blue" }}
               />
-
             </Paper>
           </Box>
         </Box>

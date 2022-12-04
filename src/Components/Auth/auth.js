@@ -18,14 +18,14 @@ export default function About() {
   const component = (value) => {
     switch (value) {
       case 0:
-        return <SignIn />;
+        return <SignIn setValue={setValue}/>;
       case 1:
         return <SignUp />;
       default:
         return null;
     }
   };
-  console.log("This is about pageeee");
+  console.log("This is about page");
   return (
     <>
       <NavBar />
@@ -34,8 +34,8 @@ export default function About() {
         onChange={handleChange}
         aria-label="disabled tabs example"
       >
-        <Tab label="SignIn" />
-        <Tab label="SignUp" />
+        <Tab label="Sign In" />
+        <Tab label="Sign Up" />
       </Tabs>
       {component(value)}
     </>
