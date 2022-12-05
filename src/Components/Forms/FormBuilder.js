@@ -2,7 +2,7 @@ import React from 'react'
 import NavBar from '../NavBar'
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
-import { Box } from '@mui/material';
+import { Box, Button } from '@mui/material';
 export default function FormBuilder() {
     const [value, setValue] = React.useState(0);
 
@@ -12,9 +12,9 @@ export default function FormBuilder() {
     const component = (value) => {
         switch (value) {
             case 0:
-                return <div>This is Form component</div>
+                return <div>This is Form component <Button onClick={handleChange}>{value}</Button></div>
             case 1:
-                return <div>This is Responses component</div>
+                return <div>This is Responses component <Button onClick={handleChange}>{value}</Button></div>
             default:
                 return null;
         }

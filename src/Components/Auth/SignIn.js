@@ -16,30 +16,32 @@ import Typography from "@mui/material/Typography";
 // import NavBar from '../NavBar';
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import GoogleBtn from "../Helper/GoogleBtn";
+import FacebookBtn from "../Helper/FacebookBtn";
 import { auth } from "../../config/firebase.config";
 import { useDispatch } from "react-redux";
 
 function SingIn(props) {
-//   const SignIn = () => {};
+  //   const SignIn = () => {};
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const SignIn =  (email, password) => {
-  
-  signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
-      // Signed in
-      const user = userCredential.user;
-      dispatch({
-        type: "SET_AUTH_USER",
-        user,
-    });
-      // ...
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-    })};
+  const SignIn = (email, password) => {
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Signed in
+        const user = userCredential.user;
+        dispatch({
+          type: "SET_AUTH_USER",
+          user,
+        });
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+      })
+  };
 
   return (
     <div>
@@ -56,7 +58,7 @@ function SingIn(props) {
         >
           <Box
             sx={{
-            //   bgcolor: '#111',
+              //   bgcolor: '#111',
               maxwidth: "90vw",
               minWidth: "25vw",
               height: "65vh",
@@ -140,13 +142,16 @@ function SingIn(props) {
                   marginBottom: "9px",
                 }}
               >
-                Don't Have An Account?
-
-                <Button sx={{ textDecoration: "none" }} onClick={ props.setValue(0)}> Sign Up</Button>
+                Already Have An Account?
+                <Link sx={{ textDecoration: "none" }}> Sign Up</Link>
               </Typography>
               <GoogleBtn
                 sx={{ marginBottom: "3px", color: "white", bgcolor: "blue" }}
               />
+              <FacebookBtn
+                sx={{ marginBottom: "3px", color: "white", bgcolor: "blue" }}
+              />
+
             </Paper>
           </Box>
         </Box>

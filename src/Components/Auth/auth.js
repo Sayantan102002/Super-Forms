@@ -7,7 +7,7 @@ import React from "react";
 import NavBar from "../NavBar";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import GoogleBtn from "../Helper/GoogleBtn";
-import SignIn from "./SingIn";
+import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 
 export default function About() {
@@ -18,7 +18,7 @@ export default function About() {
   const component = (value) => {
     switch (value) {
       case 0:
-        return <SignIn setValue={setValue}/>;
+        return <SignIn setValue={setValue} />;
       case 1:
         return <SignUp />;
       default:
