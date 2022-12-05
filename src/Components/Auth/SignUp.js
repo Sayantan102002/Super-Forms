@@ -20,29 +20,30 @@ import { auth } from "../../config/firebase.config";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
-function SingUp() {
+function SingUp(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const SignUp =  (email, password) => {
+  const SignUp = (email, password) => {
 
-  createUserWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
 
-      // Signed in
-      const user = userCredential.user;
+        // Signed in
+        const user = userCredential.user;
 
-      dispatch({
-        type: "SET_AUTH_USER",
-        user,
-    });
-      // ...
-    })
-    .catch((error) => {
-      const errorCode = error.code;
-      const errorMessage = error.message;
-      // ..
-    })};
+        dispatch({
+          type: "SET_AUTH_USER",
+          user,
+        });
+        // ...
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      })
+  };
   return (
     <div>
       <Container maxWidth="xl" minWidth="xl">
@@ -144,7 +145,7 @@ function SingUp() {
                 }}
               >
                 Already Have An Account?
-                <Link sx={{ textDecoration: "none" }}> Sign In</Link>
+                <Link sx={{ textDecoration: "none" }} onClick={props.onClick}> Sign In</Link>
               </Typography>
               <GoogleBtn
                 sx={{ marginBottom: "3px", color: "white", bgcolor: "blue" }}

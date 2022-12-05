@@ -18,9 +18,9 @@ export default function About() {
   const component = (value) => {
     switch (value) {
       case 0:
-        return <SignIn setValue={setValue} />;
+        return <SignIn onClick={() => { setValue(1) }} />;
       case 1:
-        return <SignUp />;
+        return <SignUp onClick={() => { setValue(0) }} />;
       default:
         return null;
     }

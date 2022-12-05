@@ -143,14 +143,14 @@ function SingIn(props) {
                 }}
               >
                 Already Have An Account?
-                <Link sx={{ textDecoration: "none" }}> Sign Up</Link>
+                <Button sx={{ textDecoration: "none" }} onClick={props.onClick}> Sign Up</Button>
               </Typography>
               <GoogleBtn
                 sx={{ marginBottom: "3px", color: "white", bgcolor: "blue" }}
               />
-              <FacebookBtn
+              {/* <FacebookBtn
                 sx={{ marginBottom: "3px", color: "white", bgcolor: "blue" }}
-              />
+              /> */}
 
             </Paper>
           </Box>
