@@ -23,7 +23,7 @@ Clone the project and paste the following commands in your terminal to get the p
 ## Authors
 
 - [Sayantan Chakraborty](https://www.github.com/octokatherine)
-- [Sayan Mondal](https://www.github.com/octokatherine)
+- [Sayan Mondal](https://www.linkedin.com/in/sayan-mondal-10a734221/)
 - [Soumyadeep Ghosh](https://www.github.com/octokatherine)
 
 
