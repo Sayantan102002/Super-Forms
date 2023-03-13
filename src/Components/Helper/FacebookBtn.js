@@ -54,6 +54,7 @@ export default function FacebookBtn() {
             variant="contained"
             startIcon={<FacebookIcon />}
             onClick={handleFacebookLogin}
+            sx={{marginTop: "1vh"}}
         >
             Sign In with Facebook
 

@@ -1,7 +1,4 @@
-import {
-  Tabs,
-  Tab
-} from "@mui/material";
+import { Tabs, Tab } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import React from "react";
 import NavBar from "../NavBar";
@@ -34,8 +31,18 @@ export default function About() {
         onChange={handleChange}
         aria-label="disabled tabs example"
       >
-        <Tab label="Sign In" />
-        <Tab label="Sign Up" />
+        <Tab
+          sx={{
+            minWidth: "50%",
+          }}
+          label="Sign In"
+        />
+        <Tab
+          sx={{
+            minWidth: "50%",
+          }}
+          label="Sign Up"
+        />
       </Tabs>
       {component(value)}
     </>

@@ -16,7 +16,7 @@ export default function FormCard(props) {
         history.push("/form/" + formId)
     }
     return (
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 345, boxShadow: "2px 3px 3px blue"}}>
             <CardMedia
                 component="img"
                 height="160"
