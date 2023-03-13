@@ -7,8 +7,10 @@ import Select from '@mui/material/Select';
 import CheckBox from './QuestionSelectComponents/CheckBox';
 import MultipleChoice from './QuestionSelectComponents/MultipleChoice';
 import { Paper } from '@mui/material';
-import OptCheckBox from './QuestionSelectComponents/InsideDropdown/OptCheckBox';
+import MultipleSelect from './QuestionSelectComponents/InsideDropdown/Multiple.Select';
 import { useState,useEffect } from 'react';
+import OptShortAnswer from './QuestionSelectComponents/InsideDropdown/Short.Answer';
+import ShortAnswer from './QuestionSelectComponents/ShortAnswer';
 
 export default function QuestionSelect(props) {
 //   const [age, setAge] = React.useState('');
@@ -46,9 +48,9 @@ console.log(value)
           onChange={handleChange}
 
         >
-          <MenuItem value={1} ><CheckBox/></MenuItem>
+          <MenuItem value={1}><CheckBox/></MenuItem>
           <MenuItem value={2}><MultipleChoice/></MenuItem>
-          <MenuItem value={3}>Short Answer</MenuItem>
+          <MenuItem value={3}><ShortAnswer/></MenuItem>
         </Select>
       </FormControl>
     </Box>

@@ -1,6 +1,6 @@
 import { Box, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import OptCheckBox from "./QuestionSelectComponents/InsideDropdown/OptCheckBox";
+import MultipleSelect from "./QuestionSelectComponents/InsideDropdown/Multiple.Select";
 
 export default function ComponentRenderer(props) {
   const { val } = props;
@@ -8,7 +8,7 @@ export default function ComponentRenderer(props) {
     console.log(value);
     switch (value) {
       case 1:
-        return <OptCheckBox/>;
+        return <MultipleSelect/>;
       case 2:
         return <div>This is multiple choice componenet</div>;
       case 3:

@@ -4,7 +4,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import { TextField } from '@mui/material';
 
-export default function OptCheckBox() {
+export default function MultipleSelect() {
   return (
     <FormGroup >
       <FormControlLabel control={<Checkbox defaultChecked />} label={<TextField/>} />
