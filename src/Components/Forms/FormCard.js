@@ -35,7 +35,7 @@ export default function FormCard(props) {
                 <IconButton onClick={handleClick} >
                     <EditIcon />
                 </IconButton>
-                <IconButton>
+                <IconButton onClick={() => { deleteForm(formId) }}>
                     <DeleteIcon />
                 </IconButton>
             </CardActions>

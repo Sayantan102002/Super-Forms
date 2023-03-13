@@ -92,6 +92,7 @@ function SingUp(props) {
                 variant="outlined"
                 placeholder="Enter Your Email"
                 value={email}
+                type={"email"}
                 onChange={(event) => setEmail(event.target.value)}
                 sx={{ width: "70%", margin: "10px" }}
               />
@@ -136,7 +137,7 @@ function SingUp(props) {
                 onClick={SignUp(email, password)}
               >
                 {" "}
-                Sign UP
+                Sign Up
               </Button>
 
               <Typography

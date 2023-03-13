@@ -12,9 +12,9 @@ export default function FormBuilder() {
     const component = (value) => {
         switch (value) {
             case 0:
-                return <div>This is Form component <Button onClick={handleChange}>{value}</Button></div>
+                return <div>This is Form component </div>
             case 1:
-                return <div>This is Responses component <Button onClick={handleChange}>{value}</Button></div>
+                return <div>This is Responses component </div>
             default:
                 return null;
         }
