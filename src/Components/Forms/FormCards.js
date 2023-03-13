@@ -7,7 +7,8 @@ export default function FormCards() {
 
     const { formsDictionary, formIds, deleteForm } = useSelector((state) => state.forms)
     return (
-        <>
+        
+        <Grid container spacing={4} sx={{margin: "0 0 0 0"}} >
             {formIds.map((formId) => {
                 const form = formsDictionary[formId]
                 return (
@@ -16,7 +17,8 @@ export default function FormCards() {
                     </Grid>
                 )
             })}
-        </>
+            </Grid>
+        
     )
 
 }
