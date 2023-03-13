@@ -45,7 +45,9 @@ function NavBar() {
             })
         }).catch((error) => {
             // An error happened.
+            console.log(error)
         });
+
     }
 
     const settings = [<Button variant="outlined" onClick={handleGoogleSignOut}>

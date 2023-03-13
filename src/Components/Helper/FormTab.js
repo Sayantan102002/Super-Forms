@@ -1,9 +1,8 @@
 import React from 'react';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
 import { appleTabsStylesHook } from '@mui-treasury/styles/tabs';
+import { Tab, Tabs } from '@mui/material';
 
-const FormTab = () => {
+const AppleTabs = () => {
     const [tabIndex, setTabIndex] = React.useState(0);
     const tabsStyles = appleTabsStylesHook.useTabs();
     const tabItemStyles = appleTabsStylesHook.useTabItem();
@@ -20,4 +19,4 @@ const FormTab = () => {
     );
 };
 
-export default FormTab;
+export default AppleTabs;

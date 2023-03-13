@@ -1,7 +1,8 @@
-// // import { createStyles, Theme } from '@material-ui/core/styles';
+// import { createStyles } from '@mui/styles';
+// // import { useTheme } from '@mui/styles';
 
 
-// export const tabsStyles = ({ palette, breakpoints }: Theme) => createStyles({
+// export const tabsStyles = ({ palette, breakpoints }) => createStyles({
 //   root: {
 //     backgroundColor: palette.type === 'light' ? '#eee' : palette.divider,
 //     borderRadius: 10,
@@ -38,7 +39,7 @@
 //   }
 // });
 
-// export const tabItemStyles = ({ palette, breakpoints }: Theme) => createStyles({
+// export const tabItemStyles = ({ palette, breakpoints }) => createStyles({
 //   root: {
 //     '&:hover': {
 //       opacity: 1

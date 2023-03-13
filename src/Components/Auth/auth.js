@@ -9,6 +9,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import GoogleBtn from "../Helper/GoogleBtn";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
+// import FormTab from "../Helper/FormTab";
 
 export default function About() {
   const [value, setValue] = React.useState(0);
@@ -29,6 +30,7 @@ export default function About() {
   return (
     <>
       <NavBar />
+      {/* <FormTab /> */}
       <Tabs
         value={value}
         onChange={handleChange}
