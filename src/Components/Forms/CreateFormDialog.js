@@ -5,7 +5,7 @@ import DoDisturbAltIcon from '@mui/icons-material/DoDisturbAlt';
 import { LoadingButton } from '@mui/lab';
 import PhotoUploader from './photo.uploader';
 export default function CreateFormDialog(props) {
-    const { open, setOpen, createForm, setFormName, setFormDesc, formName, formDesc } = props;
+    const { open, setOpen, createForm, setFormName, setFormDesc, formName, formDesc, setFormImg, formImg } = props;
     const [loading, setLoading] = useState(false);
     const handleClose = () => {
         setOpenAl(true);
@@ -45,7 +45,8 @@ export default function CreateFormDialog(props) {
                         error={formDesc?.length < 5 && formName !== null}
                         helperText="Form Description must be at least 5 characters"
                     />
-                    <PhotoUploader />
+                    <PhotoUploader setFormImg={setFormImg}
+                        formImg={formImg} />
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} variant="contained" color="error" startIcon={<DoDisturbAltIcon />}>Cancel</Button>
