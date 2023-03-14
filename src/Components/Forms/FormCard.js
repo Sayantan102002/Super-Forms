@@ -16,15 +16,16 @@ export default function FormCard(props) {
         history.push("/form/" + formId)
     }
     return (
-        <Card sx={{ maxWidth: 345, border: "2px solid purple", boxShadow: "3px 3px 3px grey"}}>
+        <Card sx={{ minWidth: 330, maxWidth: 345, border: "2px solid purple", boxShadow: "3px 3px 3px grey" }}>
             <CardMedia
                 component="img"
                 height="160"
-                image="https://s3.amazonaws.com/paperform-blog/2022/11/Contact--Form-in-HTML-@2x.png"
+                image={data?.form?.formImg || "https://s3.amazonaws.com/paperform-blog/2022/11/Contact--Form-in-HTML-@2x.png"}
                 alt="green iguana"
+                sx={{ objectFit: "fill"/*, minWidth: 345 */ }}
             />
             <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
+                <Typography gutterBottom variant="h5" component="div" sx={{ wordWrap: "break-word" }}>
                     {data?.form?.formName}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">

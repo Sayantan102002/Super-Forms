@@ -12,6 +12,7 @@ export default function CreateFormDialog(props) {
         setOpen(false);
         setFormName(null);
         setFormDesc(null);
+        setFormImg(null);
         setLoading(false);
     }
     const [openAl, setOpenAl] = useState(false);

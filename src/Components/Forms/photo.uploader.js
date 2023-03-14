@@ -10,7 +10,10 @@ const styles = {
         border: '1px solid red',
         borderRadius: '2vw',
         borderStyle: 'dashed',
-        // display: 'flex', flexDirection: 'column'
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     uploadBtn: {
         // padding: '2vh 2vw',
@@ -81,13 +84,19 @@ export default function PhotoUploader(props) {
     }
     return (
         <Box sx={styles.container}>
-            <InputBase type="file" accept='image/*' defaultValue={file} onChange={(event) => { setFile(event.target.files[0]) }} sx={styles.uploadBtn} />
+            <Box sx={{
+
+                width: '100%',
+
+            }}>
+                <InputBase type="file" accept='image/*' defaultValue={file} onChange={(event) => { setFile(event.target.files[0]) }} sx={styles.uploadBtn} />
+            </Box>
             <Box>
                 {loading ? <CircularProgressWithLabel value={progress} /> : <></>}
             </Box>
-            <Box>
-
-            </Box>
+            {formImg ? <Box>
+                <img style={{ height: "fit-content", width: "200px" }} src={formImg} />
+            </Box> : null}
         </Box>
     )
 }
