@@ -28,11 +28,13 @@ const styles = {
     }
 }
 
-export default function PhotoUploader() {
+export default function PhotoUploader(props) {
+    const { formImg, setFormImg } = props
     const [file, setFile] = useState(null);
     // let progress = 0;
     const [loading, setLoading] = useState(false);
     const [progress, setProgress] = useState(0);
+    const [url, setUrl] = useState(null);
     useEffect(() => {
         // console.log(new File(file));
         uploader(file);
@@ -68,6 +70,8 @@ export default function PhotoUploader() {
                 // Handle successful uploads on complete
                 // For instance, get the download URL: https://firebasestorage.googleapis.com/...
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                    setUrl(downloadURL);
+                    setFormImg(downloadURL);
                     console.log('File available at', downloadURL);
                 });
                 setLoading(false);
@@ -80,6 +84,9 @@ export default function PhotoUploader() {
             <InputBase type="file" accept='image/*' defaultValue={file} onChange={(event) => { setFile(event.target.files[0]) }} sx={styles.uploadBtn} />
             <Box>
                 {loading ? <CircularProgressWithLabel value={progress} /> : <></>}
+            </Box>
+            <Box>
+
             </Box>
         </Box>
     )
