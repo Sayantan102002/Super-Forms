@@ -15,6 +15,8 @@ import ShortAnswer from './QuestionSelectComponents/ShortAnswer';
 
 
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
+import LongAnswer from './QuestionSelectComponents/LongAnswer';
+import AccessTimeIcon from '@mui/icons-material/AccessTime';
 
 export default function QuestionSelect(props) {
 //   const [age, setAge] = React.useState('');
@@ -54,11 +56,16 @@ useEffect(() => {
 
         >
           <MenuItem value={1}><CheckBox/></MenuItem>
+
           <MenuItem value={2}><MultipleChoice/></MenuItem>
 
           <MenuItem value={3}><ShortAnswer/></MenuItem>
 
-          <MenuItem value={4}> <CalendarTodayIcon/>Date</MenuItem>
+          <MenuItem value={4}><LongAnswer/></MenuItem>
+          
+          <MenuItem value={5}> <CalendarTodayIcon/>Date</MenuItem>
+
+          <MenuItem value={6}> <AccessTimeIcon/>Time</MenuItem>
 
         </Select>
       </FormControl>

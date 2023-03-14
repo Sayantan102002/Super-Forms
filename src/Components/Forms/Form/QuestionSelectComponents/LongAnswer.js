@@ -8,7 +8,7 @@ import ToggleButtonGroup from "@mui/material/ToggleButtonGroup";
 import { TextField } from "@mui/material";
 
 
-export default function ShortAnswer() {
+export default function LongAnswer() {
   const [alignment, setAlignment] = React.useState("left");
 
   const handleAlignment = (event, newAlignment) => {
@@ -27,7 +27,7 @@ export default function ShortAnswer() {
         <ToggleButton value="justify" aria-label="justified" disabled>
           <FormatAlignJustifyIcon />
         </ToggleButton>
-        <h4 style={{fontWeight:"400"}}>Short-Answer Text</h4>
+        <h4 style={{fontWeight:"400"}}>Long-Answer Text</h4>
       </ToggleButtonGroup>
 
     </>
