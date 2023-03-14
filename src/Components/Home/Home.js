@@ -15,6 +15,7 @@ export default function Home() {
     const [loading, setLoading] = useState(true);
     const [formName, setFormName] = useState(null);
     const [formDesc, setFormDesc] = useState(null);
+    const [formImg, setFormImg] = useState(null);
     const dispatch = useDispatch();
     const getForms = () => {
         // setLoading(true);
@@ -42,6 +43,7 @@ export default function Home() {
             form: {
                 formName,
                 formDesc,
+                formImg,
                 createdBy: user?.displayName,
                 createdAt: formatRelative(subDays(new Date(), 3), new Date())
             },
@@ -73,8 +75,10 @@ export default function Home() {
                         setLoading={setLoading}
                         setFormName={setFormName}
                         setFormDesc={setFormDesc}
+                        setFormImg={setFormImg}
                         formName={formName}
                         formDesc={formDesc}
+                        formImg={formImg}
                     />
                     : <Dashboard
                         createForm={createForm}
@@ -85,6 +89,8 @@ export default function Home() {
                         formName={formName}
                         formDesc={formDesc}
                         deleteForm={deleteForm}
+                        setFormImg={setFormImg}
+                        formImg={formImg}
                     />}
                 </>}
         </>
