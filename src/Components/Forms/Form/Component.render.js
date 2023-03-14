@@ -1,15 +1,15 @@
 import { Box, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import MultipleSelect from "./QuestionSelectComponents/InsideDropdown/Multiple.Select";
 import DateSelecter from "./QuestionSelectComponents/InsideDropdown/Date.Selecter";
 import OptCheckBox from "./QuestionSelectComponents/InsideDropdown/OptCheckBox";
-
 export default function ComponentRenderer(props) {
   const { val } = props;
   const valueToOption = (value) => {
     console.log(value);
     switch (value) {
       case 1:
-        return <OptCheckBox/>;
+        return <MultipleSelect/>;
       case 2:
         return <div>This is mcq</div>;
       case 3:
