@@ -21,9 +21,7 @@ export default function QuestionCard() {
       <TextField id="outlined-basic" label="Name" variant="standard" />
       <QuestionSelect val={val} setValue={setValue}/>
         </Box>
-
 <ComponentRenderer val={val}/>
-
-    </Paper>
+   </Paper>
   );
 }

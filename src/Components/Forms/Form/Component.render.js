@@ -1,5 +1,6 @@
 import { Box, TextField } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import DateSelecter from "./QuestionSelectComponents/InsideDropdown/Date.Selecter";
 import OptCheckBox from "./QuestionSelectComponents/InsideDropdown/OptCheckBox";
 
 export default function ComponentRenderer(props) {
@@ -10,9 +11,11 @@ export default function ComponentRenderer(props) {
       case 1:
         return <OptCheckBox/>;
       case 2:
-        return <div>This is multiple choice componenet</div>;
+        return <div>This is mcq</div>;
       case 3:
         return <div>This is Short answer component</div>;
+      case 4:
+        return <DateSelecter/>;
     }
   };
   const [option,setOption]=useState(valueToOption(val));
