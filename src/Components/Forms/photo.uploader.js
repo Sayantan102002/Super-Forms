@@ -7,6 +7,7 @@ import { storage } from '../../config/firebase.config';
 import CircularProgressWithLabel from '../Helper/CircularProgressWithLabel'
 const styles = {
     container: {
+        width: "20rem",
         border: '1px solid red',
         borderRadius: '2vw',
         borderStyle: 'dashed',

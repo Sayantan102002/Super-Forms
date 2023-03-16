@@ -5,6 +5,7 @@ import DateSelecter from "./QuestionSelectComponents/InsideDropdown/Date.Selecte
 import ShortAnswer from "./QuestionSelectComponents/ShortAnswer";
 import { TimePicker } from "@mui/x-date-pickers";
 import TimeSelector from "./QuestionSelectComponents/InsideDropdown/Time.Selector";
+import PhotoUploader from "../photo.uploader";
 // import MultipleSelect from "./QuestionSelectComponents/InsideDropdown/OptCheckBox";
 export default function ComponentRenderer(props) {
   const { val } = props;
@@ -24,6 +25,8 @@ export default function ComponentRenderer(props) {
         return <DateSelecter/>;
       case 6:
         return <TimeSelector/>;
+      case 7:
+        return <PhotoUploader/>;
     }
   };
   const [option,setOption]=useState(valueToOption(val));
