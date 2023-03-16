@@ -17,6 +17,8 @@ import ShortAnswer from './QuestionSelectComponents/ShortAnswer';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 import LongAnswer from './QuestionSelectComponents/LongAnswer';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
+import PhotoUploader from '../photo.uploader';
+import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 
 export default function QuestionSelect(props) {
 //   const [age, setAge] = React.useState('');
@@ -66,6 +68,8 @@ useEffect(() => {
           <MenuItem value={5}> <CalendarTodayIcon/>Date</MenuItem>
 
           <MenuItem value={6}> <AccessTimeIcon/>Time</MenuItem>
+
+          <MenuItem value={7}><CloudUploadIcon/>File Upload</MenuItem>
 
         </Select>
       </FormControl>
