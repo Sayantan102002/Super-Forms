@@ -19,7 +19,7 @@ export default function FormCard(props) {
         <Card sx={{ minWidth: 330, maxWidth: 345, border: "2px solid purple", boxShadow: "3px 3px 3px grey" }}>
             <CardMedia
                 component="img"
-                height="160"
+                height="170"
                 image={data?.form?.formImg || "https://s3.amazonaws.com/paperform-blog/2022/11/Contact--Form-in-HTML-@2x.png"}
                 alt="green iguana"
                 sx={{ objectFit: "fill"/*, minWidth: 345 */ }}

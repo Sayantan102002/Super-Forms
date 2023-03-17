@@ -4,6 +4,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import DoDisturbAltIcon from '@mui/icons-material/DoDisturbAlt';
 import { LoadingButton } from '@mui/lab';
 import PhotoUploader from './photo.uploader';
+import Toast from '../Toast';
 export default function CreateFormDialog(props) {
     const { open, setOpen, createForm, setFormName, setFormDesc, formName, formDesc, setFormImg, formImg } = props;
     const [loading, setLoading] = useState(false);
@@ -57,7 +58,7 @@ export default function CreateFormDialog(props) {
                     >Create</LoadingButton>
                 </DialogActions>
             </Dialog>
-            {/* <Alert type="success" message="Form created Successfully" setOpen={setOpenAl} open={openAl} /> */}
+            <Toast type="success" message="Form created Successfully" setOpen={setOpenAl} open={openAl} />
         </div>
     )
 }

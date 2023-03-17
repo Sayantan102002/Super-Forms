@@ -27,7 +27,7 @@ export default function Home() {
             dispatch({
                 type: 'AddForm',
                 payload: {
-                    formIds,
+                    formIds: formIds.reverse(),
                     formsDictionary: data
                 }
             })

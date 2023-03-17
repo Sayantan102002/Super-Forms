@@ -1,14 +1,12 @@
 import * as React from 'react';
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
 import Snackbar from '@mui/material/Snackbar';
 import MuiAlert from '@mui/material/Alert';
 
-const Alertt = React.forwardRef(function Alert(props, ref) {
+const Alert = React.forwardRef(function Alert(props, ref) {
     return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
 });
 
-export default function Alert(props) {
+export default function Toast(props) {
     const { setOpen, open } = props;
     // const [open, setOpen] = React.useState(true);
 
@@ -26,10 +24,15 @@ export default function Alert(props) {
 
     return (
 
-        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
-            <Alertt onClose={handleClose} severity={props.type} sx={{ width: '100%' }}>
+        <Snackbar
+            open={open}
+            autoHideDuration={2000}
+            onClose={handleClose}
+            anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        >
+            <Alert onClose={handleClose} severity={props.type} sx={{ width: '100%' }}>
                 {props.message}
-            </Alertt>
+            </Alert>
         </Snackbar>
 
     );
