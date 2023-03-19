@@ -18,3 +18,5 @@ jobs:
           firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_SUPER_FORMS_AA3C8 }}'
           channelId: live
           projectId: super-forms-aa3c8
+        env:
+          CI: false
