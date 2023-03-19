@@ -3,7 +3,7 @@ import React, { useState } from 'react'
 import CheckIcon from '@mui/icons-material/Check';
 import DoDisturbAltIcon from '@mui/icons-material/DoDisturbAlt';
 import { LoadingButton } from '@mui/lab';
-import PhotoUploader from './photo.uploader';
+import PhotoUploader from '../Helper/photo.uploader';
 import Toast from '../Toast';
 export default function CreateFormDialog(props) {
     const { open, setOpen, createForm, setFormName, setFormDesc, formName, formDesc, setFormImg, formImg } = props;
@@ -17,6 +17,7 @@ export default function CreateFormDialog(props) {
         setLoading(false);
     }
     const [openAl, setOpenAl] = useState(false);
+    const [showToast, setShowToast] = useState(false);
     return (
         <div>
             <Dialog open={open} onClose={handleClose} maxWidth="sm" /*PaperProps={{ sx: { width: "50%", height: "100%" } }}*/>
@@ -44,7 +45,7 @@ export default function CreateFormDialog(props) {
                         variant="outlined"
                         value={formDesc}
                         onChange={(event) => setFormDesc(event.target.value)}
-                        error={formDesc?.length < 5 && formName !== null}
+                        error={formDesc?.length < 5 && formDesc !== null}
                         helperText="Form Description must be at least 5 characters"
                     />
                     <PhotoUploader setFormImg={setFormImg}
@@ -52,13 +53,15 @@ export default function CreateFormDialog(props) {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} variant="contained" color="error" startIcon={<DoDisturbAltIcon />}>Cancel</Button>
+
                     <LoadingButton loading={loading}
-                        onClick={() => { setLoading(true); createForm(); handleClose(); }} variant="contained" startIcon={<CheckIcon />}
-                        disabled={!(formName?.length > 3 && formDesc?.length > 5)}
+                        onClick={() => { setLoading(true); createForm(); handleClose(); setShowToast(true); }} variant="contained" startIcon={<CheckIcon />}
+                        disabled={!(formName?.length >= 3 && formDesc?.length >= 5)}
                     >Create</LoadingButton>
+
                 </DialogActions>
             </Dialog>
-            <Toast type="success" message="Form created Successfully" setOpen={setOpenAl} open={openAl} />
+            {showToast && <Toast type="success" message="Form created Successfully" setOpen={setOpenAl} open={openAl} />}
         </div>
     )
 }
