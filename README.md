@@ -22,9 +22,9 @@ Clone the project and paste the following commands in your terminal to get the p
     
 ## Authors
 
-- [Sayantan Chakraborty](https://www.github.com/octokatherine)
+- [Sayantan Chakraborty](https://www.linkedin.com/in/sayantan102002/)
 - [Sayan Mondal](https://www.linkedin.com/in/sayan-mondal-10a734221/)
-- [Soumyadeep Ghosh](https://www.github.com/octokatherine)
+- [Soumyadeep Ghosh](https://www.linkedin.com/in/soumyadeep-ghosh-554492220/)
 
 
 ## FAQ
