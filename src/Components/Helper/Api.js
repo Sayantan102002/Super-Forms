@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-import config from '../config/index';
+// import config from '../config/index';
 let Api = null;
 
-Api = axios.create({ baseURL: config.apiUrl });
+Api = axios.create({ baseURL: 'http://localhost:5000/' });
 
 
 

@@ -9,8 +9,10 @@ import EditIcon from '@mui/icons-material/Edit';
 import { Box, IconButton } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useHistory } from 'react-router-dom';
+import useFormApis from '../Helper/form.hooks';
 export default function FormCard(props) {
-    const { data, formId, deleteForm } = props;
+    const { deleteForm } = useFormApis()
+    const { data, formId } = props;
     const history = useHistory();
     const handleClick = () => {
         history.push("/form/" + formId)
@@ -20,23 +22,23 @@ export default function FormCard(props) {
             <CardMedia
                 component="img"
                 height="170"
-                image={data?.form?.formImg || "https://s3.amazonaws.com/paperform-blog/2022/11/Contact--Form-in-HTML-@2x.png"}
+                image={data?.image || "https://s3.amazonaws.com/paperform-blog/2022/11/Contact--Form-in-HTML-@2x.png"}
                 alt="green iguana"
                 sx={{ objectFit: "fill"/*, minWidth: 345 */ }}
             />
             <CardContent>
                 <Typography gutterBottom variant="h5" component="div" sx={{ wordWrap: "break-word" }}>
-                    {data?.form?.formName}
+                    {data?.name}
                 </Typography>
                 <Typography variant="body2" color="text.secondary">
-                    {data?.form?.formDesc}
+                    {data?.description}
                 </Typography>
             </CardContent>
             <CardActions>
                 <IconButton onClick={handleClick} >
                     <EditIcon />
                 </IconButton>
-                <IconButton onClick={() => { deleteForm(formId) }}>
+                <IconButton onClick={() => deleteForm(formId)} >
                     <DeleteIcon />
                 </IconButton>
             </CardActions>
