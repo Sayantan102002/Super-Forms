@@ -47,117 +47,116 @@ function SingUp(props) {
       })
   };
   return (
-    <div>
-      <Container maxWidth="xl" minWidth="xl">
+    <Box maxWidth="xl" minWidth="xl">
+      <Box
+        sx={{
+          bgcolor: "#cfe8fc",
+          height: "90vh",
+          width: "100%",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
         <Box
           sx={{
-            bgcolor: "#cfe8fc",
-            height: "90vh",
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
+            // bgcolor: '#000',
+            maxwidth: "90vw",
+            minWidth: "25vw",
+            height: "65vh",
+            minHeight: "52vh",
           }}
         >
-          <Box
+          <Paper
+            elevation={5}
             sx={{
-              // bgcolor: '#000',
-              maxwidth: "90vw",
-              minWidth: "25vw",
-              height: "65vh",
-              minHeight: "52vh",
+              Height: "100%",
+              minHeight: "100%",
+              width: "100%",
+              minWidth: "100%",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              flexDirection: "column",
             }}
           >
-            <Paper
-              elevation={5}
+            <Typography variant="h5">Sign-Up</Typography>
+            <Avatar className="Avatar" sx={{ bgcolor: "blue" }}>
+              <LockOutlinedIcon />
+            </Avatar>
+
+            <TextField
+              id="outlined-basic"
+              label="Email"
+              variant="outlined"
+              placeholder="Enter Your Email"
+              value={email}
+              type={"email"}
+              onChange={(event) => setEmail(event.target.value)}
+              sx={{ width: "70%", margin: "10px" }}
+            />
+            <TextField
+              id="outlined-basic"
+              label="Password"
+              variant="outlined"
+              placeholder="Enter Your Passwod"
+              value={password}
+              onChange={(event) => setPassword(event.target.value)}
+              type={"password"}
+              sx={{ width: "70%", marginBottom: "10px" }}
+            />
+            <TextField
+              id="outlined-basic"
+              label="Confirm Your Passwod"
+              variant="outlined"
+              placeholder="Confirm Your Passwod"
+              type={"password"}
+              sx={{ width: "70%", marginBottom: "0px" }}
+            />
+
+            <Typography
               sx={{
-                Height: "100%",
-                minHeight: "100%",
-                width: "100%",
-                minWidth: "100%",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                flexDirection: "column",
+                marginTop: "1px",
+                marginRight: "auto",
+                marginLeft: "3.9rem",
+                cursor: "pointer",
               }}
             >
-              <Typography variant="h5">Sign-Up</Typography>
-              <Avatar className="Avatar" sx={{ bgcolor: "blue" }}>
-                <LockOutlinedIcon />
-              </Avatar>
+              {/* <Link sx={{ textDecoration: "none" }}>Forgot Password?</Link> */}
+            </Typography>
 
-              <TextField
-                id="outlined-basic"
-                label="Email"
-                variant="outlined"
-                placeholder="Enter Your Email"
-                value={email}
-                type={"email"}
-                onChange={(event) => setEmail(event.target.value)}
-                sx={{ width: "70%", margin: "10px" }}
-              />
-              <TextField
-                id="outlined-basic"
-                label="Password"
-                variant="outlined"
-                placeholder="Enter Your Passwod"
-                value={password}
-                onChange={(event) => setPassword(event.target.value)}
-                type={"password"}
-                sx={{ width: "70%", marginBottom: "10px" }}
-              />
-              <TextField
-                id="outlined-basic"
-                label="Confirm Your Passwod"
-                variant="outlined"
-                placeholder="Confirm Your Passwod"
-                type={"password"}
-                sx={{ width: "70%", marginBottom: "0px" }}
-              />
+            <Button
+              variant="contained"
+              sx={{
+                marginTop: "10px",
+                width: "50%",
+                maxHeight: "35px",
+                flex: "1",
+              }}
+              onClick={SignUp(email, password)}
+            >
+              {" "}
+              Sign Up
+            </Button>
 
-              <Typography
-                sx={{
-                  marginTop: "1px",
-                  marginRight: "auto",
-                  marginLeft: "3.9rem",
-                  cursor: "pointer",
-                }}
-              >
-                {/* <Link sx={{ textDecoration: "none" }}>Forgot Password?</Link> */}
-              </Typography>
-
-              <Button
-                variant="contained"
-                sx={{
-                  marginTop: "10px",
-                  width: "50%",
-                  maxHeight: "35px",
-                  flex: "1",
-                }}
-                onClick={SignUp(email, password)}
-              >
-                {" "}
-                Sign Up
-              </Button>
-
-              <Typography
-                sx={{
-                  marginTop: "10px",
-                  cursor: "pointer",
-                  marginBottom: "9px",
-                }}
-              >
-                Already Have An Account?
-                <Link sx={{ textDecoration: "none" }} onClick={props.onClick}> Sign In</Link>
-              </Typography>
-              <GoogleBtn
-                sx={{ marginBottom: "3px", color: "white", bgcolor: "blue" }}
-              />
-            </Paper>
-          </Box>
+            <Typography
+              sx={{
+                marginTop: "10px",
+                cursor: "pointer",
+                marginBottom: "9px",
+              }}
+            >
+              Already Have An Account?
+              <Link sx={{ textDecoration: "none" }} onClick={props.onClick}> Sign In</Link>
+            </Typography>
+            <GoogleBtn
+              sx={{ marginBottom: "3px", color: "white", bgcolor: "blue" }}
+            />
+          </Paper>
         </Box>
-      </Container>
-    </div>
+      </Box>
+    </Box>
+
   );
 }
 export default SingUp;

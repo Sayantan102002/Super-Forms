@@ -9,21 +9,15 @@ export default function AppRoutes() {
     return [
         <BasicPrivateRoute
             exact
-            path="/forms"
+            path="/dashboard/forms"
             //   element={<Home />}
             component={Home}
         />,
         <BasicPrivateRoute
             exact
-            path="/form/:formId"
+            path="/dashboard/form/:formId"
             //   element={<Home />}
             component={FormBuilder}
-        />,
-        <GuestRoute
-            exact
-            path="/"
-            //   element={<Home />}
-            component={About}
         />
     ]
 }

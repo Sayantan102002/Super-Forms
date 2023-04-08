@@ -2,6 +2,11 @@ import './App.css';
 import { ConnectedRouter } from 'connected-react-router';
 import { Switch } from 'react-router-dom';
 import AppRoutes from './routes/app.routes';
+import { Box, Container } from '@mui/material';
+import NavBar from './Components/NavBar';
+import SideNavBar from './Components/SideNavBar';
+import GuestRoutes from './routes/auth.routes';
+import GuestNavBar from './Components/GuestNavBar';
 // import useFormApis from './Components/Helper/form.hooks';
 // import { useEffect } from 'react';
 
@@ -19,7 +24,42 @@ function App(props) {
   return (
     <ConnectedRouter history={props.history}>
       <Switch>
-        {AppRoutes()}
+        <Box>
+          <GuestNavBar />
+          <Box sx={{
+            mt: "10vh",
+          }}>
+            {GuestRoutes()}
+          </Box>
+        </Box>
+        <Box sx={{
+          display: 'flex',
+          flexDirection: 'row',
+        }}>
+          <SideNavBar />
+          <Box sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            width: '93%',
+            ml: "7%"
+          }}>
+            <NavBar />
+            <Box
+              sx={{
+                mt: "10vh",
+                background: "#f5f5f5",
+                width: "100%",
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+              }}
+
+            >
+              {AppRoutes()}
+            </Box>
+          </Box>
+        </Box>
+
       </Switch>
     </ConnectedRouter>
   );

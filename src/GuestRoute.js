@@ -12,7 +12,7 @@ const GuestRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
-      render={(props) => (loggedIn ? <Redirect to={{ pathname: '/forms' }} /> : <Component {...props} />)}
+      render={(props) => (loggedIn ? <Redirect to={{ pathname: '/dashboard/forms' }} /> : <Component {...props} />)}
     />
   );
 };

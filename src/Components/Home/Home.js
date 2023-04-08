@@ -63,8 +63,7 @@ export default function Home() {
     }, [formIds.length])
     return (
         <>
-            <NavBar />
-            {isLoading ? <Container maxWidth="xl">
+            {isLoading ? <Container >
                 <Box sx={{ height: '90vh', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
                     <CircularProgress />
                 </Box>
@@ -75,5 +74,6 @@ export default function Home() {
                 }
                 </>}
         </>
+
     )
 }

@@ -2,7 +2,7 @@ import { LoadingButton } from '@mui/lab'
 import React from 'react'
 import CreateFormDialog from './CreateFormDialog'
 import AddIcon from '@mui/icons-material/Add';
-import { Button } from '@mui/material';
+import { Button, Container } from '@mui/material';
 export default function CreateFormBtn(props) {
     const { setOpen, open } = props;
 
@@ -11,9 +11,9 @@ export default function CreateFormBtn(props) {
             <Button
                 variant="outlined"
                 startIcon={<AddIcon />}
-                sx={{ marginTop: '2vh' }}
+                sx={{ marginTop: '2vh', marginRight: "2vw" }}
                 onClick={() => { setOpen(true) }}
-                color="error">
+                color="primary">
 
                 Create Form
             </Button>

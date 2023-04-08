@@ -16,12 +16,12 @@ export default function FormCard(props) {
     const history = useHistory();
     const handleClick = () => {
         history.push({
-            pathname: "/form/" + data?.name,
+            pathname: "/dashboard/form/" + data?.name,
             state: { questions: data?.questions }
         })
     }
     return (
-        <Card sx={{ minWidth: 330, maxWidth: 345, border: "2px solid purple", boxShadow: "3px 3px 3px grey" }}>
+        <Card sx={{ minWidth: 300, maxWidth: 345, border: "2px solid purple", boxShadow: "3px 3px 3px grey" }}>
             <CardMedia
                 component="img"
                 height="170"

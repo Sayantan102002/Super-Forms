@@ -1,4 +1,4 @@
-import { Tabs, Tab } from "@mui/material";
+import { Tabs, Tab, Box } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import React from "react";
 import NavBar from "../NavBar";
@@ -25,8 +25,15 @@ export default function About() {
   };
   console.log("This is about page");
   return (
-    <>
-      <NavBar />
+    <Box sx={{
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      width: "100%",
+      height: "100vh",
+      // border: '1px solid red'
+
+    }}>
       {/* <FormTab /> */}
       <Tabs
         value={value}
@@ -47,6 +54,6 @@ export default function About() {
         />
       </Tabs>
       {component(value)}
-    </>
+    </Box>
   );
 }
