@@ -14,7 +14,7 @@ export default function useFormApis() {
       name: formName,
       description: formDesc,
       image: formImg,
-      user: "6414d0bf2fdd39855faa410d"
+      user: user?._id
     })
       .then((res) => {
         console.log(res);
@@ -51,7 +51,7 @@ export default function useFormApis() {
   const getForms = async () => {
     setLoading(true);
     Api.post('/form/getForms', {
-      user: "6414d0bf2fdd39855faa410d"
+      user: user?._id
     })
       .then((res) => {
         console.log(res);

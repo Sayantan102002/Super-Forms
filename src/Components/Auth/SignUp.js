@@ -31,7 +31,7 @@ function SingUp(props) {
 
         // Signed in
         const user = userCredential.user;
-
+        console.log(user);
         dispatch({
           type: "SET_AUTH_USER",
           user,
@@ -42,7 +42,7 @@ function SingUp(props) {
         const errorCode = error.code;
         const errorMessage = error.message;
         console.log(error)
-        
+
         // ..
       })
   };

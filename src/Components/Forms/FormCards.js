@@ -14,7 +14,7 @@ export default function FormCards() {
                 const form = formsDictionary[formId]
                 return (
                     <Grid item key={formId}>
-                        <FormCard data={form} key={formId} formId={formId} />
+                        <FormCard data={form} key={formId} />
                     </Grid>
                 )
             })}

@@ -12,10 +12,13 @@ import { useHistory } from 'react-router-dom';
 import useFormApis from '../Helper/form.hooks';
 export default function FormCard(props) {
     const { deleteForm } = useFormApis()
-    const { data, formId } = props;
+    const { data } = props;
     const history = useHistory();
     const handleClick = () => {
-        history.push("/form/" + formId)
+        history.push({
+            pathname: "/form/" + data?.name,
+            state: { questions: data?.questions }
+        })
     }
     return (
         <Card sx={{ minWidth: 330, maxWidth: 345, border: "2px solid purple", boxShadow: "3px 3px 3px grey" }}>
@@ -38,7 +41,7 @@ export default function FormCard(props) {
                 <IconButton onClick={handleClick} >
                     <EditIcon />
                 </IconButton>
-                <IconButton onClick={() => deleteForm(formId)} >
+                <IconButton onClick={() => deleteForm(data?._id)} >
                     <DeleteIcon />
                 </IconButton>
             </CardActions>

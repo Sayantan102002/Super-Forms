@@ -15,11 +15,13 @@ import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import { useDispatch, useSelector } from 'react-redux';
 import { signOut } from "firebase/auth";
 import { auth } from "../config/firebase.config";
+import { useHistory } from 'react-router-dom';
 
 const pages = ['Products', 'Pricing', 'Blog'];
 
 
 function NavBar() {
+    const history = useHistory();
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const dispatch = useDispatch();
@@ -43,6 +45,7 @@ function NavBar() {
             dispatch({
                 type: "REMOVE_AUTH_USER"
             })
+            history.push('/')
         }).catch((error) => {
             // An error happened.
             console.log(error)

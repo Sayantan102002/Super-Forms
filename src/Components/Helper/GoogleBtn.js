@@ -4,6 +4,7 @@ import GoogleIcon from '@mui/icons-material/Google';
 import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth } from "../../config/firebase.config"
 import { useDispatch } from 'react-redux';
+import Api from './Api';
 export default function GoogleBtn() {
 
     const dispatch = useDispatch();
@@ -17,12 +18,22 @@ export default function GoogleBtn() {
                 const credential = GoogleAuthProvider.credentialFromResult(result);
                 const token = credential.accessToken;
                 // The signed-in user info.
-                const user = result.user;
+                let user = result.user;
                 console.log(result, "Result");
-                dispatch({
-                    type: "SET_AUTH_USER",
-                    user,
-                });
+                Api.post('/user/getUpdatedUser', {
+                    email: user.email,
+                    name: user.displayName,
+                    firebaseUid: user.uid,
+                    photoUrl: user.photoURL,
+                    // password: "Password
+                }).then((res) => {
+                    // user = res;
+                    console.log(res)
+                    dispatch({
+                        type: "SET_AUTH_USER",
+                        user: res,
+                    });
+                })
                 // ...
             }).catch((error) => {
                 // Handle Errors here.

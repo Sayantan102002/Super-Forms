@@ -50,8 +50,10 @@ export default function CreateFormDialog(props) {
                         error={formDesc?.length < 5 && formDesc !== null}
                         helperText="Form Description must be at least 5 characters"
                     />
-                    <PhotoUploader setFormImg={setFormImg}
-                        formImg={formImg} />
+                    <PhotoUploader
+                        setFormImg={setFormImg}
+                        formImg={formImg}
+                    />
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose} variant="contained" color="error" startIcon={<DoDisturbAltIcon />}>Cancel</Button>

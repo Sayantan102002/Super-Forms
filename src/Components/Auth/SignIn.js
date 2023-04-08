@@ -16,11 +16,11 @@ import Typography from "@mui/material/Typography";
 // import NavBar from '../NavBar';
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import GoogleBtn from "../Helper/GoogleBtn";
-import FacebookBtn from "../Helper/FacebookBtn";
+// import FacebookBtn from "../Helper/FacebookBtn";
 import { auth } from "../../config/firebase.config";
 import { useDispatch } from "react-redux";
 
-function SingIn(props) {
+function SignIn(props) {
   //   const SignIn = () => {};
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -160,4 +160,4 @@ function SingIn(props) {
     </div>
   );
 }
-export default SingIn;
+export default SignIn;
