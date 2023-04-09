@@ -90,7 +90,7 @@ function NavBar() {
                                 startAdornment={
                                     <SearchIcon
                                         sx={{
-                                            px: 1,
+                                            px: 1.5,
                                         }}
                                         fontSize="medium"
                                     />
@@ -101,7 +101,7 @@ function NavBar() {
                                     // border: '1px solid',
                                     background: "#f5f4f6",
                                     borderRadius: "10px",
-                                    p: 1,
+                                    py: 0.7,
                                     width: "25vw",
                                     fontSize: "1.3vw"
                                 }}

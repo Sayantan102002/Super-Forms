@@ -150,7 +150,8 @@ function SideNavBar() {
                             >
                                 <DashboardIcon
                                     color={route === 'dashboard' ? 'primary' : 'disabled'}
-                                    fontSize='large' />
+                                    fontSize='large'
+                                />
                                 <Typography
                                     variant="subtitle1"
                                     color={route === 'dashboard' ? 'primary' : 'GrayText'}
@@ -172,7 +173,8 @@ function SideNavBar() {
                             >
                                 <AccountCircleIcon
                                     color={route === 'account' ? 'primary' : 'disabled'}
-                                    fontSize='large' />
+                                    fontSize='large'
+                                />
                                 <Typography
                                     variant="subtitle1"
                                     color={route === 'account' ? 'primary' : 'GrayText'}
@@ -194,7 +196,8 @@ function SideNavBar() {
                             >
                                 <SettingsIcon
                                     color={route === 'settings' ? 'primary' : 'disabled'}
-                                    fontSize='large' />
+                                    fontSize='large'
+                                />
                                 <Typography
                                     variant="subtitle1"
                                     color={route === 'settings' ? 'primary' : 'GrayText'}

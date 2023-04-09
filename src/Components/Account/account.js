@@ -3,7 +3,7 @@ import React from 'react'
 
 export default function Account() {
     return (
-        <Typography variant="h1">
+        <Typography variant="h3">
             This is Account page
         </Typography>
     )

@@ -11,7 +11,7 @@ export default function CreateFormBtn(props) {
             <Button
                 variant="outlined"
                 startIcon={<AddIcon />}
-                sx={{ marginTop: '2vh', marginRight: "2vw" }}
+                sx={{ marginTop: '2vh', mr: "2vw" }}
                 onClick={() => { setOpen(true) }}
                 color="primary">
 
