@@ -18,7 +18,7 @@ import { useHistory } from 'react-router-dom';
 import { auth } from '../config/firebase.config';
 import logo from '../assets/logo/png/logo_140x140.png'
 import { ThemeProvider, createTheme } from '@mui/material/styles';
-const pages = ['Products', 'Pricing', 'Blog'];
+
 
 
 function GuestNavBar() {
@@ -59,6 +59,9 @@ function GuestNavBar() {
     </Button>];
 
     const theme = createTheme({
+        typography: {
+            color: 'red'
+        },
         components: {
             MuiAppBar: {
                 styleOverrides: {
@@ -70,7 +73,6 @@ function GuestNavBar() {
         }
     })
 
-    const { user } = useSelector(state => (state.auth));
     return (
         <ThemeProvider theme={theme}>
             <AppBar position="fixed" color="inherit">
@@ -89,15 +91,14 @@ function GuestNavBar() {
                         <Typography
                             variant="h6"
                             noWrap
-                            component="a"
-                            href="/"
+                            // component="a"
+                            // href="/"
                             sx={{
-                                mr: 2,
-                                display: { xs: 'none', md: 'flex' },
-                                fontFamily: 'monospace',
+                                ml: 2,
+                                // display: { xs: 'none', md: 'flex' },
+                                // fontFamily: 'monospace',
                                 fontWeight: 700,
-                                // letterSpacing: '.3rem',
-                                color: 'inherit',
+                                // color: 'error',
                                 textDecoration: 'none',
                             }}
                         >
@@ -133,11 +134,7 @@ function GuestNavBar() {
                                     display: { xs: 'block', md: 'none' },
                                 }}
                             >
-                                {/* {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
-                                </MenuItem>
-                            ))} */}
+
                             </Menu>
                         </Box>
                         <InsertDriveFileIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
@@ -152,7 +149,6 @@ function GuestNavBar() {
                                 flexGrow: 1,
                                 fontFamily: 'monospace',
                                 fontWeight: 700,
-                                // letterSpacing: '.3rem',
                                 color: 'inherit',
                                 textDecoration: 'none',
                             }}

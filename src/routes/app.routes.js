@@ -1,4 +1,5 @@
 import React from 'react'
+import { Redirect, Route } from 'react-router-dom'
 import BasicPrivateRoute from '../BasicPrivateRoute'
 import Account from '../Components/Account/account'
 import About from '../Components/Auth/auth'
@@ -29,6 +30,11 @@ export default function AppRoutes() {
             exact
             path="/settings"
             component={Settings}
+        />,
+        <Route
+            exact
+            path="*"
+            render={() => <Redirect to="/dashboard" />}
         />
     ]
 }

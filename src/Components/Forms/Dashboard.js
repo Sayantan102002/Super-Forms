@@ -10,6 +10,7 @@ export default function Dashboard(props) {
         <Container sx={{
             minWidth: "100%",
             minHeight: "100vh",
+            mb: "10vh"
             //  background: "linear-gradient( 95.2deg, rgba(173,252,234,1) 26.8%, rgba(192,229,246,1) 64% )" 
             // display: 'flex',
             // flexDirection: 'column',

@@ -260,7 +260,7 @@ function SideNavBar() {
                 elevation={3}
             >
                 <BottomNavigation
-                    showLabels
+                    // showLabels
                     value={route}
                     onChange={(event, newValue) => {
                         setRoute(newValue);
