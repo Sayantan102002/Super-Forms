@@ -21,7 +21,7 @@ export default function FormCard(props) {
         })
     }
     return (
-        <Card sx={{ minWidth: 300, maxWidth: 345, border: "2px solid purple", boxShadow: "3px 3px 3px grey" }}>
+        <Card sx={{ minWidth: 328, maxWidth: 345, border: "2px solid purple", boxShadow: "3px 3px 3px grey" }}>
             <CardMedia
                 component="img"
                 height="170"

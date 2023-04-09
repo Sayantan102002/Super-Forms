@@ -59,7 +59,10 @@ function App(props) {
               <NavBar />
               <Box
                 sx={{
-                  mt: "10vh",
+                  mt: {
+                    md: "10vh",
+                    xs: "7vh"
+                  },
                   background: "#f5f5f5",
                   width: "100%",
                   // display: 'flex',
