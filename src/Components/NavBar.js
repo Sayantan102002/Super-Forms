@@ -54,9 +54,11 @@ function NavBar() {
 
     }
 
-    const settings = [<Button variant="outlined" onClick={handleGoogleSignOut}>
-        Log Out
-    </Button>];
+    const settings = [
+        <Button variant="text" onClick={handleGoogleSignOut}>
+            Log Out
+        </Button>
+    ];
 
     const theme = createTheme({
         components: {
@@ -88,8 +90,7 @@ function NavBar() {
                                 startAdornment={
                                     <SearchIcon
                                         sx={{
-                                            pr: 1,
-                                            pl: 1,
+                                            px: 1,
                                         }}
                                         fontSize="medium"
                                     />

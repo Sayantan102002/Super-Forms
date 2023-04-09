@@ -15,12 +15,13 @@ import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import { useDispatch, useSelector } from 'react-redux';
 import { signOut } from "firebase/auth";
 import { auth } from "../config/firebase.config";
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import logo from '../assets/logo/png/logo_140x140.png'
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import SettingsIcon from '@mui/icons-material/Settings';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { ButtonBase } from '@mui/material';
 
 
 function SideNavBar() {
@@ -60,6 +61,14 @@ function SideNavBar() {
         Log Out
     </Button>];
 
+    let location = useLocation()
+    const [route, setRoute] = React.useState('dashboard');
+    React.useEffect(() => {
+        let arr = location.pathname.split("/")
+        console.log(arr[1])
+        setRoute(arr[1])
+
+    }, [location])
     const theme = createTheme({
         components: {
             MuiAppBar: {
@@ -89,20 +98,24 @@ function SideNavBar() {
                         display: 'flex',
                         flexDirection: 'column',
                         justifyContent: 'center',
-                        // border: '1px solid'
+                        // border: '1px solid',
                         mt: 3
                     }}
                 >
-                    <Toolbar disableGutters
+                    <Toolbar
+                        disableGutters
                         sx={{
                             display: 'flex',
                             flexDirection: 'column',
                             justifyContent: 'center',
-                            // border: '1px solid'
+                            // border: '1px solid',
+                            // width: '100%'
                         }}
                     >
                         {/* <InsertDriveFileIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} /> */}
-                        <Box>
+                        <Box
+
+                        >
                             <img src={logo}
                                 style={
                                     {
@@ -119,50 +132,76 @@ function SideNavBar() {
                             flexDirection: 'column',
                             alignItems: 'center',
                             mt: 2,
+
                             // border: "1px solid red",
                         }}>
-                            <Box sx={{
+                            <ButtonBase sx={{
                                 display: 'flex',
                                 flexDirection: 'column',
                                 alignItems: 'center',
-                                mt: 2
-                            }}>
-                                <DashboardIcon color='disabled' fontSize='large' />
+                                mt: 2,
+                                cursor: 'pointer',
+                                px: 1
+                                // border: "1px solid red",
+                            }}
+                                onClick={() => {
+                                    history.push('/dashboard')
+                                }}
+                            >
+                                <DashboardIcon
+                                    color={route === 'dashboard' ? 'primary' : 'disabled'}
+                                    fontSize='large' />
                                 <Typography
                                     variant="subtitle1"
-                                    color="GrayText"
+                                    color={route === 'dashboard' ? 'primary' : 'GrayText'}
                                 >
                                     Dashboard
                                 </Typography>
-                            </Box>
-                            <Box sx={{
+                            </ButtonBase>
+                            <ButtonBase sx={{
                                 display: 'flex',
                                 flexDirection: 'column',
                                 alignItems: 'center',
-                                mt: 5
-                            }}>
-                                <AccountCircleIcon color='disabled' fontSize='large' />
+                                mt: 5,
+                                cursor: 'pointer',
+                                px: 2
+                            }}
+                                onClick={() => {
+                                    history.push('/account')
+                                }}
+                            >
+                                <AccountCircleIcon
+                                    color={route === 'account' ? 'primary' : 'disabled'}
+                                    fontSize='large' />
                                 <Typography
                                     variant="subtitle1"
-                                    color="GrayText"
+                                    color={route === 'account' ? 'primary' : 'GrayText'}
                                 >
                                     Account
                                 </Typography>
-                            </Box>
-                            <Box sx={{
+                            </ButtonBase>
+                            <ButtonBase sx={{
                                 display: 'flex',
                                 flexDirection: 'column',
                                 alignItems: 'center',
-                                mt: 5
-                            }}>
-                                <SettingsIcon color='disabled' fontSize='large' />
+                                mt: 5,
+                                cursor: 'pointer',
+                                px: 2
+                            }}
+                                onClick={() => {
+                                    history.push('/settings')
+                                }}
+                            >
+                                <SettingsIcon
+                                    color={route === 'settings' ? 'primary' : 'disabled'}
+                                    fontSize='large' />
                                 <Typography
                                     variant="subtitle1"
-                                    color="GrayText"
+                                    color={route === 'settings' ? 'primary' : 'GrayText'}
                                 >
                                     Settings
                                 </Typography>
-                            </Box>
+                            </ButtonBase>
                         </Box>
                         <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
                             <IconButton

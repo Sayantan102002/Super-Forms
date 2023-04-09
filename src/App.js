@@ -7,6 +7,7 @@ import NavBar from './Components/NavBar';
 import SideNavBar from './Components/SideNavBar';
 import GuestRoutes from './routes/auth.routes';
 import GuestNavBar from './Components/GuestNavBar';
+import { useSelector } from 'react-redux';
 // import useFormApis from './Components/Helper/form.hooks';
 // import { useEffect } from 'react';
 
@@ -20,45 +21,46 @@ function App(props) {
   //     user: "6414d0bf2fdd39855faa410d"
   //   })
   // })
+  const { user } = useSelector(state => state.auth);
   console.log(process.env.REACT_APP_mode);
   return (
     <ConnectedRouter history={props.history}>
       <Switch>
-        <Box>
+        {!user ? <Box>
           <GuestNavBar />
           <Box sx={{
             mt: "10vh",
           }}>
             {GuestRoutes()}
           </Box>
-        </Box>
-        <Box sx={{
-          display: 'flex',
-          flexDirection: 'row',
-        }}>
-          <SideNavBar />
+        </Box> :
           <Box sx={{
             display: 'flex',
-            flexDirection: 'column',
-            width: '93%',
-            ml: "7%"
+            flexDirection: 'row',
           }}>
-            <NavBar />
-            <Box
-              sx={{
-                mt: "10vh",
-                background: "#f5f5f5",
-                width: "100%",
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-              }}
+            <SideNavBar />
+            <Box sx={{
+              display: 'flex',
+              flexDirection: 'column',
+              width: '93%',
+              ml: "7%"
+            }}>
+              <NavBar />
+              <Box
+                sx={{
+                  mt: "10vh",
+                  background: "#f5f5f5",
+                  width: "100%",
+                  // display: 'flex',
+                  // flexDirection: 'column',
+                  // alignItems: 'center',
+                }}
 
-            >
-              {AppRoutes()}
+              >
+                {AppRoutes()}
+              </Box>
             </Box>
-          </Box>
-        </Box>
+          </Box>}
 
       </Switch>
     </ConnectedRouter>

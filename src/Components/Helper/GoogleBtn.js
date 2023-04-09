@@ -5,8 +5,9 @@ import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { auth } from "../../config/firebase.config"
 import { useDispatch } from 'react-redux';
 import Api from './Api';
+import { useHistory } from 'react-router-dom';
 export default function GoogleBtn() {
-
+    const history = useHistory();
     const dispatch = useDispatch();
     const handleGoogleLogin = () => {
         const provider = new GoogleAuthProvider();
@@ -33,6 +34,7 @@ export default function GoogleBtn() {
                         type: "SET_AUTH_USER",
                         user: res,
                     });
+                    history.push('/dashboard')
                 })
                 // ...
             }).catch((error) => {
