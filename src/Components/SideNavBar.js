@@ -21,7 +21,11 @@ import logo from '../assets/logo/png/logo_140x140.png'
 import DashboardIcon from '@mui/icons-material/Dashboard';
 import SettingsIcon from '@mui/icons-material/Settings';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import { ButtonBase } from '@mui/material';
+import { ButtonBase, Paper } from '@mui/material';
+
+
+import BottomNavigation from '@mui/material/BottomNavigation';
+import BottomNavigationAction from '@mui/material/BottomNavigationAction';
 
 
 function SideNavBar() {
@@ -57,9 +61,6 @@ function SideNavBar() {
 
     }
 
-    const settings = [<Button variant="outlined" onClick={handleGoogleSignOut}>
-        Log Out
-    </Button>];
 
     let location = useLocation()
     const [route, setRoute] = React.useState('dashboard');
@@ -92,7 +93,9 @@ function SideNavBar() {
     const { user } = useSelector(state => (state.auth));
     return (
         <ThemeProvider theme={theme}>
-            <AppBar position="fixed" color="inherit">
+            <AppBar position="fixed" color="inherit"
+                sx={{ display: { xs: 'none', md: 'flex' }, }}
+            >
                 <Container maxWidth="xl"
                     sx={{
                         display: 'flex',
@@ -240,6 +243,60 @@ function SideNavBar() {
                     </Toolbar>
                 </Container>
             </AppBar>
+
+
+
+            <Paper sx={{
+                position: 'fixed',
+                bottom: 0,
+                left: 0,
+                right: 0,
+                display: { xs: 'flex', md: 'none' },
+                border: '1px solid red',
+                zIndex: 1100,
+                background: "#FFFFFF"
+
+            }}
+                elevation={3}
+            >
+                <BottomNavigation
+                    showLabels
+                    value={route}
+                    onChange={(event, newValue) => {
+                        setRoute(newValue);
+                    }}
+                    sx={{
+                        width: '100%',
+                    }}
+
+
+                >
+                    <BottomNavigationAction
+                        label="Dashboard"
+                        value="dashboard"
+                        onClick={() => {
+                            history.push('/dashboard')
+                        }}
+                        icon={<DashboardIcon />}
+                    />
+                    <BottomNavigationAction
+                        label="Account"
+                        value="account"
+                        onClick={() => {
+                            history.push('/account')
+                        }}
+                        icon={<AccountCircleIcon />}
+                    />
+                    <BottomNavigationAction
+                        label="Settings"
+                        value="settings"
+                        onClick={() => {
+                            history.push('/settings')
+                        }}
+                        icon={<SettingsIcon />}
+                    />
+                </BottomNavigation>
+            </Paper>
         </ThemeProvider>
     );
 }

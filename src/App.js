@@ -2,7 +2,8 @@ import './App.css';
 import { ConnectedRouter } from 'connected-react-router';
 import { Switch } from 'react-router-dom';
 import AppRoutes from './routes/app.routes';
-import { Box, Container } from '@mui/material';
+import { Box, Container, useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import NavBar from './Components/NavBar';
 import SideNavBar from './Components/SideNavBar';
 import GuestRoutes from './routes/auth.routes';
@@ -13,6 +14,7 @@ import { useSelector } from 'react-redux';
 
 
 function App(props) {
+  const theme = useTheme()
   // const { createForm } = useFormApis();
   // useEffect(() => {
   //   createForm({
@@ -22,6 +24,7 @@ function App(props) {
   //   })
   // })
   const { user } = useSelector(state => state.auth);
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   console.log(process.env.REACT_APP_mode);
   return (
     <ConnectedRouter history={props.history}>
@@ -37,13 +40,21 @@ function App(props) {
           <Box sx={{
             display: 'flex',
             flexDirection: 'row',
+            // border: "1px solid red",
+            width: '100%',
+            // display: { xs: 'none', md: 'flex' },
           }}>
             <SideNavBar />
             <Box sx={{
               display: 'flex',
               flexDirection: 'column',
-              width: '93%',
-              ml: "7%"
+              // width: '100%',
+              width: {
+                xs: "100%",
+                md: "93%"
+              },
+              ml: { md: "7%" },
+              // border: "1px solid red"
             }}>
               <NavBar />
               <Box
@@ -63,7 +74,7 @@ function App(props) {
           </Box>}
 
       </Switch>
-    </ConnectedRouter>
+    </ConnectedRouter >
   );
 }
 

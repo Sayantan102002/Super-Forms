@@ -77,7 +77,12 @@ function NavBar() {
     const { user } = useSelector(state => (state.auth));
     return (
         <ThemeProvider theme={theme}>
-            <AppBar position="fixed" color="inherit">
+            <AppBar position="fixed" color="inherit"
+                sx={{
+                    display: { xs: 'flex', md: 'flex' },
+                    width: { xs: '100%', md: '93%' },
+                }}
+            >
                 <Container maxWidth="xl">
                     <Toolbar disableGutters
                         sx={{
@@ -102,8 +107,15 @@ function NavBar() {
                                     background: "#f5f4f6",
                                     borderRadius: "10px",
                                     py: 0.7,
-                                    width: "25vw",
-                                    fontSize: "1.3vw"
+                                    width: {
+                                        md: "25vw",
+                                        xs: "50vw"
+                                    },
+                                    fontSize: {
+                                        md: "1.3vw",
+                                        xs: "4vw"
+                                    }
+
                                 }}
                             />
                         </Box>

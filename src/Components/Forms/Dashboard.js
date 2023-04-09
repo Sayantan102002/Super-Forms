@@ -15,11 +15,12 @@ export default function Dashboard(props) {
             // flexDirection: 'column',
             // alignItems: 'flex-start'
         }}
-        >   <Box sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-end',
-        }}>
+        >
+            <Box sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'flex-end',
+            }}>
 
                 <CreateFormBtn
                     open={open}
