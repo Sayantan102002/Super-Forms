@@ -252,7 +252,7 @@ function SideNavBar() {
                 left: 0,
                 right: 0,
                 display: { xs: 'flex', md: 'none' },
-                border: '1px solid red',
+                // border: '1px solid red',
                 zIndex: 1100,
                 background: "#FFFFFF"
 
