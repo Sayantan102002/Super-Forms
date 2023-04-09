@@ -6,12 +6,24 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import EditIcon from '@mui/icons-material/Edit';
-import { Box, IconButton } from '@mui/material';
+import { Box, IconButton, useMediaQuery } from '@mui/material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { useHistory } from 'react-router-dom';
 import useFormApis from '../Helper/form.hooks';
+import { useTheme } from '@mui/material/styles'
+
+import Zoom from '@mui/material/Zoom';
+import Dialog from '@mui/material/Dialog';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import DialogContentText from '@mui/material/DialogContentText';
+import DialogTitle from '@mui/material/DialogTitle';
+
+import cancel from '../../assets/cancel2.jpg'
+
 export default function FormCard(props) {
     const { deleteForm } = useFormApis()
+    const theme = useTheme();
     const { data } = props;
     const history = useHistory();
     const handleClick = () => {
@@ -20,8 +32,18 @@ export default function FormCard(props) {
             state: { questions: data?.questions }
         })
     }
+    const handleClose = () => {
+        setOpen(false);
+    }
+    const [open, setOpen] = React.useState(false)
+    const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
     return (
-        <Card sx={{ minWidth: 328, maxWidth: 345, border: "2px solid purple", boxShadow: "3px 3px 3px grey" }}>
+        <Card sx={{
+            minWidth: { xs: 328, md: 300 },
+            maxWidth: 345,
+            border: "2px solid purple",
+            boxShadow: "3px 3px 3px grey"
+        }}>
             <CardMedia
                 component="img"
                 height="170"
@@ -41,17 +63,40 @@ export default function FormCard(props) {
                 <IconButton onClick={handleClick} >
                     <EditIcon />
                 </IconButton>
-                <IconButton onClick={() => deleteForm(data?._id)} >
+                <IconButton onClick={() => setOpen(true)} >
                     <DeleteIcon />
                 </IconButton>
             </CardActions>
-            {/* <Box sx={{ height: '5vh', border: '1px solid red', width: "100%" }}>
-                <Typography
-                variant="body2"
-                >
-                    
-                </Typography>
-            </Box> */}
+
+
+
+            <Dialog open={open} onClose={handleClose} maxWidth="xs">
+
+                <DialogTitle>Delete</DialogTitle>
+                <Zoom in={open}>
+                    <DialogContent
+                        sx={{
+                            display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                        }}
+                    >
+                        <img src={cancel} style={!isMobile ? {
+                            width: '10vw'
+                        } : { width: "30vw" }} />
+                        <DialogContentText>
+                            Do you really want to delete <b>{data?.name}</b> form?
+                        </DialogContentText>
+                    </DialogContent>
+                </Zoom>
+                <DialogActions>
+                    <Button variant="contained" color="error" onClick={handleClose}>Cancel</Button>
+                    <Button variant="contained" color="primary" onClick={() => deleteForm(data?._id)}>Delete</Button>
+                </DialogActions>
+
+            </Dialog>
+
+
         </Card>
     );
 }

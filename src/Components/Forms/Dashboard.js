@@ -1,11 +1,11 @@
-import { Box, Container, Grid } from '@mui/material'
+import { Box, Container, Fab, Grid } from '@mui/material'
 import React, { useState } from 'react'
 import CreateFormBtn from './CreateFormBtn';
 import FormCards from './FormCards'
 
-
 export default function Dashboard(props) {
     const [open, setOpen] = useState(false);
+
     return (
         <Container sx={{
             minWidth: "100%",
@@ -18,9 +18,10 @@ export default function Dashboard(props) {
         }}
         >
             <Box sx={{
-                display: 'flex',
+
                 flexDirection: 'column',
                 alignItems: 'flex-end',
+
             }}>
 
                 <CreateFormBtn
@@ -28,6 +29,9 @@ export default function Dashboard(props) {
                     setOpen={setOpen}
                 />
             </Box>
+
+
+
             <Box sx={{
                 flexGrow: 1,
                 margin: '2vh 0',
