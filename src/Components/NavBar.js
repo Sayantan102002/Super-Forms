@@ -15,11 +15,14 @@ import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import { useDispatch, useSelector } from 'react-redux';
 import { signOut } from "firebase/auth";
 import { auth } from "../config/firebase.config";
-
-const pages = ['Products', 'Pricing', 'Blog'];
+import { useHistory } from 'react-router-dom';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import { InputBase } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
 
 
 function NavBar() {
+    const history = useHistory();
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
     const dispatch = useDispatch();
@@ -43,6 +46,7 @@ function NavBar() {
             dispatch({
                 type: "REMOVE_AUTH_USER"
             })
+            history.push('/about')
         }).catch((error) => {
             // An error happened.
             console.log(error)
@@ -50,135 +54,107 @@ function NavBar() {
 
     }
 
-    const settings = [<Button variant="outlined" onClick={handleGoogleSignOut}>
-        Log Out
-    </Button>];
+    const settings = [
+        <Button variant="text" onClick={handleGoogleSignOut}>
+            Log Out
+        </Button>
+    ];
 
-
+    const theme = createTheme({
+        components: {
+            MuiAppBar: {
+                styleOverrides: {
+                    root: {
+                        width: '93%',
+                        border: '1px solid #CDCDCD',
+                        boxShadow: "none"
+                    }
+                }
+            }
+        }
+    })
 
     const { user } = useSelector(state => (state.auth));
     return (
-        <AppBar position="static">
-            <Container maxWidth="xl">
-                <Toolbar disableGutters>
-                    <InsertDriveFileIcon sx={{ display: { xs: 'none', md: 'flex' }, mr: 1 }} />
-                    <Typography
-                        variant="h6"
-                        noWrap
-                        component="a"
-                        href="/"
+        <ThemeProvider theme={theme}>
+            <AppBar position="fixed" color="inherit"
+                sx={{
+                    display: { xs: 'flex', md: 'flex' },
+                    width: { xs: '100%', md: '93%' },
+                }}
+            >
+                <Container maxWidth="xl">
+                    <Toolbar disableGutters
                         sx={{
-                            mr: 2,
-                            display: { xs: 'none', md: 'flex' },
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
-                            // letterSpacing: '.3rem',
-                            color: 'inherit',
-                            textDecoration: 'none',
+                            display: 'flex',
+                            justifyContent: 'space-between'
                         }}
                     >
-                        Super Forms
-                    </Typography>
+                        <Box>
+                            <InputBase
+                                startAdornment={
+                                    <SearchIcon
+                                        sx={{
+                                            px: 1.5,
+                                        }}
+                                        fontSize="medium"
+                                    />
+                                }
+                                placeholder="Search"
+                                color="default"
+                                sx={{
+                                    // border: '1px solid',
+                                    background: "#f5f4f6",
+                                    borderRadius: "10px",
+                                    py: 0.7,
+                                    width: {
+                                        md: "25vw",
+                                        xs: "50vw"
+                                    },
+                                    fontSize: {
+                                        md: "1.3vw",
+                                        xs: "4vw"
+                                    }
 
-                    <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-                        <IconButton
-                            size="large"
-                            aria-label="account of current user"
-                            aria-controls="menu-appbar"
-                            aria-haspopup="true"
-                            onClick={handleOpenNavMenu}
-                            color="inherit"
-                        >
-                            <MenuIcon />
-                        </IconButton>
-                        <Menu
-                            id="menu-appbar"
-                            anchorEl={anchorElNav}
-                            anchorOrigin={{
-                                vertical: 'bottom',
-                                horizontal: 'left',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'left',
-                            }}
-                            open={Boolean(anchorElNav)}
-                            onClose={handleCloseNavMenu}
-                            sx={{
-                                display: { xs: 'block', md: 'none' },
-                            }}
-                        >
-                            {/* {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                                    <Typography textAlign="center">{page}</Typography>
-                                </MenuItem>
-                            ))} */}
-                        </Menu>
-                    </Box>
-                    <InsertDriveFileIcon sx={{ display: { xs: 'flex', md: 'none' }, mr: 1 }} />
-                    <Typography
-                        variant="h5"
-                        noWrap
-                        component="a"
-                        href=""
-                        sx={{
-                            mr: 2,
-                            display: { xs: 'flex', md: 'none' },
-                            flexGrow: 1,
-                            fontFamily: 'monospace',
-                            fontWeight: 700,
-                            // letterSpacing: '.3rem',
-                            color: 'inherit',
-                            textDecoration: 'none',
-                        }}
-                    >
-                        Super Forms
-                    </Typography>
-                    <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {/* {pages.map((page) => (
-                            <Button
-                                key={page}
-                                onClick={handleCloseNavMenu}
-                                sx={{ my: 2, color: 'white', display: 'block' }}
+                                }}
+                            />
+                        </Box>
+
+
+
+                        {user ? <Box sx={{ flexGrow: 0 }}>
+                            <Tooltip title="Open settings">
+                                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+                                    <Avatar alt={user?.displayName} src={user?.photoURL} />
+                                </IconButton>
+                            </Tooltip>
+                            <Menu
+                                sx={{ mt: '45px' }}
+                                id="menu-appbar"
+                                anchorEl={anchorElUser}
+                                anchorOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                keepMounted
+                                transformOrigin={{
+                                    vertical: 'top',
+                                    horizontal: 'right',
+                                }}
+                                open={Boolean(anchorElUser)}
+                                onClose={handleCloseUserMenu}
                             >
-                                {page}
-                            </Button>
-                        ))} */}
-                    </Box>
-
-                    {user ? <Box sx={{ flexGrow: 0 }}>
-                        <Tooltip title="Open settings">
-                            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                <Avatar alt={user?.displayName} src={user?.photoURL} />
-                            </IconButton>
-                        </Tooltip>
-                        <Menu
-                            sx={{ mt: '45px' }}
-                            id="menu-appbar"
-                            anchorEl={anchorElUser}
-                            anchorOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            keepMounted
-                            transformOrigin={{
-                                vertical: 'top',
-                                horizontal: 'right',
-                            }}
-                            open={Boolean(anchorElUser)}
-                            onClose={handleCloseUserMenu}
-                        >
-                            {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                                    <Typography textAlign="center">{setting}</Typography>
-                                </MenuItem>
-                            ))}
-                        </Menu>
-                    </Box> : null}
-                </Toolbar>
-            </Container>
-        </AppBar>
+                                {settings.map((setting) => (
+                                    <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                                        <Typography textAlign="center">{setting}</Typography>
+                                    </MenuItem>
+                                ))}
+                            </Menu>
+                        </Box> : null}
+                    </Toolbar>
+                </Container>
+            </AppBar>
+        </ThemeProvider>
     );
 }
 export default NavBar;

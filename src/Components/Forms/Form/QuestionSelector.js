@@ -1,26 +1,18 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
-import CheckBox from './QuestionSelectComponents/CheckBox';
-import MultipleChoice from './QuestionSelectComponents/MultipleChoice';
-import { Paper } from '@mui/material';
-import MultipleSelect from './QuestionSelectComponents/InsideDropdown/Multiple.Select';
+import CheckBox from './Question Type Options/CheckBox';
+import MultipleChoice from './Question Type Options/MultipleChoice';
 import { useState, useEffect } from 'react';
+import ShortAnswer from './Question Type Options/ShortAnswer';
+import LongAnswer from './Question Type Options/LongAnswer';
+import Time from './Question Type Options/Time';
+import Date from './Question Type Options/Date';
+import FileUpload from './Question Type Options/FileUpload';
 
-import OptShortAnswer from './QuestionSelectComponents/InsideDropdown/Short.Answer';
-import ShortAnswer from './QuestionSelectComponents/ShortAnswer';
-
-
-import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
-import LongAnswer from './QuestionSelectComponents/LongAnswer';
-import AccessTimeIcon from '@mui/icons-material/AccessTime';
-import PhotoUploader from '../../Helper/photo.uploader';
-import CloudUploadIcon from '@mui/icons-material/CloudUpload';
-
-export default function QuestionSelect(props) {
+export default function QuestionSelector(props) {
   //   const [age, setAge] = React.useState('');
   const { val, setValue } = props;
   const [optionname, setOptionname] = useState('')
@@ -65,11 +57,11 @@ export default function QuestionSelect(props) {
 
           <MenuItem value={4}><LongAnswer /></MenuItem>
 
-          <MenuItem value={5}> <CalendarTodayIcon />Date</MenuItem>
+          <MenuItem value={5}><Date /></MenuItem>
 
-          <MenuItem value={6}> <AccessTimeIcon />Time</MenuItem>
+          <MenuItem value={6}><Time /></MenuItem>
 
-          <MenuItem value={7}><CloudUploadIcon />File Upload</MenuItem>
+          <MenuItem value={7}><FileUpload /></MenuItem>
 
         </Select>
       </FormControl>

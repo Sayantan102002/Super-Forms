@@ -5,20 +5,21 @@ import FormCard from './FormCard'
 
 export default function FormCards() {
 
-    const { formsDictionary, formIds, deleteForm } = useSelector((state) => state.forms)
+    const { formsDictionary, formIds } = useSelector((state) => state.forms)
+    console.log(formsDictionary, formIds)
     return (
-        
-        <Grid container spacing={4} sx={{margin: "0 0 0 0"}} >
+
+        <Grid container spacing={4} sx={{ margin: "0 0 0 0" }} >
             {formIds.map((formId) => {
                 const form = formsDictionary[formId]
                 return (
-                    <Grid item>
-                        <FormCard data={form} key={formId} formId={formId} deleteForm={deleteForm} />
+                    <Grid item key={formId}>
+                        <FormCard data={form} key={formId} />
                     </Grid>
                 )
             })}
-            </Grid>
-        
+        </Grid>
+
     )
 
 }

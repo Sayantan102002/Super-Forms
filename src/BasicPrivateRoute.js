@@ -18,7 +18,7 @@ const BasicPrivateRoute = ({
                 loggedIn ? (
                     <Component {...props} {...rest} />
                 ) : (
-                    <Redirect to="/" />
+                    <Redirect to="/about" />
                 )
             }
         />
