@@ -18,12 +18,17 @@ export default function useFormApis() {
     })
       .then((res) => {
         console.log(res);
-        const { idArr, newDict } = arrayToReducer(res);
+
+        const { idArr, newDict } = arrayToReducer([res]);
+        formIds.unshift(idArr)
         dispatch({
           type: "AddForm",
           payload: {
-            formIds: idArr.reverse(),
-            formsDictionary: newDict
+            formIds,
+            formsDictionary: {
+              ...formsDictionary,
+              ...newDict
+            },
           }
         })
         // setLoading(false);
@@ -36,35 +41,45 @@ export default function useFormApis() {
       formId
     })
       .then((res) => {
-        console.log(res);
-        const { idArr, newDict } = arrayToReducer(res);
+        // console.log(res);
+        // const { idArr, newDict } = arrayToReducer([res]);
+        formIds.map((form, index) => {
+          if (form == formId)
+            formIds.splice(index, 1)
+        })
+        delete formsDictionary[`${formId}`]
         dispatch({
           type: "AddForm",
           payload: {
-            formIds: idArr.reverse(),
-            formsDictionary: newDict
+            formIds,
+            formsDictionary
           }
         })
         // setLoading(false);
       })
   }
   const getForms = async () => {
-    setLoading(true);
-    Api.post('/form/getForms', {
-      user: user?._id
-    })
-      .then((res) => {
-        console.log(res);
-        const { idArr, newDict } = arrayToReducer(res);
-        dispatch({
-          type: "AddForm",
-          payload: {
-            formIds: idArr.reverse(),
-            formsDictionary: newDict
-          }
-        })
-        setLoading(false);
+    if (formIds.length > 0) {
+      return;
+    }
+    else {
+      setLoading(true);
+      Api.post('/form/getForms', {
+        user: user?._id
       })
+        .then((res) => {
+          console.log(res);
+          const { idArr, newDict } = arrayToReducer(res);
+          dispatch({
+            type: "AddForm",
+            payload: {
+              formIds: idArr.reverse(),
+              formsDictionary: newDict
+            }
+          })
+          setLoading(false);
+        })
+    }
   }
   return {
     createForm,

@@ -1,14 +1,13 @@
-import { Tabs, Tab, Box } from "@mui/material";
-import Typography from "@mui/material/Typography";
+import { Box } from "@mui/material";
 import React from "react";
-import NavBar from "../NavBar";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import GoogleBtn from "../Helper/GoogleBtn";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
+
+
 // import FormTab from "../Helper/FormTab";
 
 export default function About() {
+
   const [value, setValue] = React.useState(0);
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -27,15 +26,15 @@ export default function About() {
   return (
     <Box sx={{
       display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
+      flexDirection: "row",
+      justifyContent: "flex-start",
       width: "100%",
-      height: "100vh",
-      // border: '1px solid red'
+      // height: "100vh",
+      border: '1px solid red',
 
     }}>
       {/* <FormTab /> */}
-      <Tabs
+      {/* <Tabs
         value={value}
         onChange={handleChange}
         aria-label="disabled tabs example"
@@ -52,8 +51,18 @@ export default function About() {
           }}
           label="Sign Up"
         />
-      </Tabs>
-      {component(value)}
+      </Tabs> */}
+      {/* {component(value)} */}
+      <Box sx={{
+        display: "flex",
+        flexDirection: "row",
+        width: { md: "40%", xs: '100%' },
+        m: 3,
+        height: '100%'
+
+      }}>
+        <SignIn />
+      </Box>
     </Box>
   );
 }
