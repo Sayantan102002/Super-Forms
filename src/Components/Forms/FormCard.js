@@ -20,7 +20,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import ShareIcon from '@mui/icons-material/Share';
 import cancel from '../../assets/cancel2.jpg'
-import SharedList from './SharedList';
+import SharedList from '../Share/SharedList';
 
 export default function FormCard(props) {
     const { deleteForm } = useFormApis()
@@ -81,7 +81,7 @@ export default function FormCard(props) {
                     </IconButton>
 
                 </CardActions>
-                <SharedList anchorEl={anchorEl} setAnchorEl={setAnchorEl} />
+                <SharedList anchorEl={anchorEl} setAnchorEl={setAnchorEl} form={data} />
 
 
 

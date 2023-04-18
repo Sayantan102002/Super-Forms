@@ -19,7 +19,7 @@ import { useHistory } from 'react-router-dom';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import { InputBase } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
-
+import NotificationsIcon from '@mui/icons-material/Notifications';
 
 function NavBar() {
     const history = useHistory();
@@ -119,10 +119,17 @@ function NavBar() {
                                 }}
                             />
                         </Box>
-
+                        {/* <IconButton>
+                            <NotificationsIcon />
+                        </IconButton> */}
 
 
                         {user ? <Box sx={{ flexGrow: 0 }}>
+                            <IconButton sx={{
+                                mr: 2
+                            }}>
+                                <NotificationsIcon />
+                            </IconButton>
                             <Tooltip title="Open settings">
                                 <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
                                     <Avatar alt={user?.displayName} src={user?.photoURL} />

@@ -1,11 +1,23 @@
-import { Box, Container, Fab, Grid } from '@mui/material'
-import React, { useState } from 'react'
+import { Box, Button, Container, Fab, Grid } from '@mui/material'
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux';
+import useNotificationApis from '../Helper/notification.hooks';
+import Toast from '../Toast';
 import CreateFormBtn from './CreateFormBtn';
 import FormCards from './FormCards'
 
 export default function Dashboard(props) {
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState(false)
+    // const [openAl, setOpenAl] = useState(false);
+    // const [showToast, setShowToast] = useState(false);
+    const { user } = useSelector(state => state.auth)
+    const { notificationIds, notificationsDictionary } = useSelector(state => state.notifications)
+    const { sendNotification, getNotifications, openAl, setOpenAl } = useNotificationApis();
+    useEffect(() => {
+        getNotifications(user?._id)
+        console.log(notificationsDictionary[notificationIds[0]]?.message)
 
+    }, [])
     return (
         <Container sx={{
             minWidth: "100%",
@@ -28,6 +40,26 @@ export default function Dashboard(props) {
                     open={open}
                     setOpen={setOpen}
                 />
+                <Button
+                    variant="contained"
+                    onClick={
+                        () => {
+
+                            sendNotification({
+                                user: user?._id,
+                                receiver: "6414d0bf2fdd39855faa410d",
+                                form: "643d22c1bb71539d5c58a8a2",
+                                message: "This is a custom notification message",
+                                type: "Invitation"
+                            })
+
+
+
+                        }
+                    }
+                >
+                    Click Me!!!
+                </Button>
             </Box>
 
 
@@ -62,7 +94,7 @@ export default function Dashboard(props) {
                     <FormCards />
                 </Grid>
             </Box>
-
+            <Toast type="success" message={notificationsDictionary[notificationIds[0]]?.message} setOpen={setOpenAl} open={openAl} notification={notificationsDictionary[notificationIds[0]]} />
 
         </Container>
     )

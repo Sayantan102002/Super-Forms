@@ -1,10 +1,9 @@
 import * as React from 'react';
 import Popover from '@mui/material/Popover';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
+import UsersList from './UsersList';
 
 export default function SharedList(props) {
-    const { anchorEl, setAnchorEl } = props;
+    const { anchorEl, setAnchorEl, form } = props;
 
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
@@ -32,8 +31,9 @@ export default function SharedList(props) {
                     vertical: 'top',
                     horizontal: 'center',
                 }}
+
             >
-                <Typography sx={{ p: 2 }}>The content of the Popover.</Typography>
+                <UsersList form={form} />
             </Popover>
         </div>
     );

@@ -14,7 +14,11 @@ export default function useFormApis() {
       name: formName,
       description: formDesc,
       image: formImg,
-      user: user?._id
+      user: user?._id,
+      shared: {
+        user: user?._id,
+        role: "Owner"
+      }
     })
       .then((res) => {
         console.log(res);
@@ -59,27 +63,27 @@ export default function useFormApis() {
       })
   }
   const getForms = async () => {
-    if (formIds.length > 0) {
-      return;
-    }
-    else {
-      setLoading(true);
-      Api.post('/form/getForms', {
-        user: user?._id
-      })
-        .then((res) => {
-          console.log(res);
-          const { idArr, newDict } = arrayToReducer(res);
-          dispatch({
-            type: "AddForm",
-            payload: {
-              formIds: idArr.reverse(),
-              formsDictionary: newDict
-            }
-          })
-          setLoading(false);
+    // if (formIds.length > 0) {
+    //   return;
+    // }
+    // else {
+    // setLoading(true);
+    Api.post('/form/getForms', {
+      user: user?._id
+    })
+      .then((res) => {
+        console.log(res);
+        const { idArr, newDict } = arrayToReducer(res);
+        dispatch({
+          type: "AddForm",
+          payload: {
+            formIds: idArr.reverse(),
+            formsDictionary: newDict
+          }
         })
-    }
+        // setLoading(false);
+      })
+    // }
   }
   return {
     createForm,

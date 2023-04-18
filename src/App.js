@@ -9,6 +9,7 @@ import SideNavBar from './Components/SideNavBar';
 import GuestRoutes from './routes/auth.routes';
 import GuestNavBar from './Components/GuestNavBar';
 import { useSelector } from 'react-redux';
+import useNotificationApis from './Components/Helper/notification.hooks';
 
 
 function App(props) {
