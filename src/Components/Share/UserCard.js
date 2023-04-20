@@ -19,13 +19,13 @@ export default function UserCard(props) {
                     alignItems: 'center',
                     py: 0.5,
                     // mx: 3,
-                    px: 1,
+                    pl: 2,
                     "&:hover": {
                         backgroundColor: "#f7f5f5"
                     },
                     cursor: 'pointer',
                     // border: '1px solid red'
-
+                    // minWidth: 200,
 
                 }}
 
@@ -36,23 +36,24 @@ export default function UserCard(props) {
             >
                 <Box sx={{
                     display: 'flex',
-                    alignItems: 'center'
+                    alignItems: 'center',
+
 
                 }}>
                     <Avatar
                         src={user?.photoURL}
                         alt={user?.name}
                         sx={{
-                            width: 32,
-                            height: 32,
+                            // width: 32,
+                            // height: 32,
                             mr: 1
                         }}
-                    />
+                    >{user?.name[0].toUpperCase()}</Avatar>
                     <Typography variant="body1">
                         {user.name}
                         {form?.shared?.map((share) => {
                             console.log(share, "Share", share?.role)
-                            if (share.user === user?._id) {
+                            if (share?.user?._id === user?._id) {
                                 if (share?.role === "Owner") {
                                     return (
                                         <><Typography variant="caption" sx={{
@@ -99,8 +100,10 @@ export default function UserCard(props) {
             </Box>
             {
                 form?.shared?.map((share) => {
-                    if (share.user === user?._id)
-                        return <RolesList anchorEl={anchorEl} setAnchorEl={setAnchorEl} form={form} role={share?.role} />
+                    if (share?.user?._id === user?._id)
+                        return <RolesList key={share?._id} anchorEl={anchorEl} setAnchorEl={setAnchorEl} form={form} role={share?.role} />
+                    // else
+                    //     return <RolesList key={share?._id} anchorEl={anchorEl} setAnchorEl={setAnchorEl} form={form} role={share?.role || "None"} />
                 })
             }
 

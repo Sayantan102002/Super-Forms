@@ -14,7 +14,7 @@ export default function UsersList(props) {
     const { form } = props;
     const { getUsers, loading } = useUserApis();
     const { usersDictionary, userIds } = useSelector((state) => state.users)
-
+    const [searchVal, setSearchVal] = useState("")
     const [role, setRole] = useState(null);
     const [checked, setChecked] = React.useState(true);
     const handleChange = (event) => {
@@ -29,13 +29,22 @@ export default function UsersList(props) {
         <Box
             sx={{
                 // p: 1,
-                maxHeight: 300,
-                minWidth: 100
+                // maxHeight: 300,
+                minWidth: 100,
+                position: 'relative',
             }}
         >
-            <Box sx={{
+            <Paper sx={{
                 p: 2,
-                pb: 1
+                pb: 1,
+                position: 'absolute',
+                // border: '1px solid red',
+                top: 0,
+                left: 0,
+                right: 16,
+                zIndex: '500',
+                background: "#FFF",
+                // overflow: 'hidden'
             }}>
                 <InputBase
                     startAdornment={
@@ -63,21 +72,31 @@ export default function UsersList(props) {
                         }
 
                     }}
+                    onChange={(e) => setSearchVal(e.target.value)}
+                    value={searchVal}
                 />
-            </Box>
-            {loading ? <CircularProgress /> : <>
+            </Paper>
+            {loading ? <CircularProgress /> : <Box sx={{
+                pt: 9,
+                overflow: 'auto',
+                maxHeight: 250,
+                minWidth: 100,
+            }}>
                 {userIds.map((userId) => {
                     const user = usersDictionary[userId];
                     console.log(user)
-                    return <UserCard
-                        user={user}
-                        anchorEl={anchorEl}
-                        setAnchorEl={setAnchorEl}
-                        form={form}
-                    />
+                    if (user?.name?.toLowerCase().includes(searchVal.toLowerCase()) || user?.email?.toLowerCase().includes(searchVal.toLowerCase())) {
+                        return <UserCard
+                            user={user}
+                            anchorEl={anchorEl}
+                            setAnchorEl={setAnchorEl}
+                            form={form}
+                        />
+
+                    }
 
                 })}
-            </>}
+            </Box>}
             {/* {userIds.map((userId) => {
                     const user = usersDictionary[userId];
                     {form?.shared?.map((share) => {
