@@ -60,7 +60,7 @@ export default function Home() {
     // }
     useEffect(() => {
         getForms();
-    }, [formIds.length])
+    }, [])
     return (
         <>
             {isLoading ? <Container >

@@ -9,20 +9,11 @@ import SideNavBar from './Components/SideNavBar';
 import GuestRoutes from './routes/auth.routes';
 import GuestNavBar from './Components/GuestNavBar';
 import { useSelector } from 'react-redux';
-// import useFormApis from './Components/Helper/form.hooks';
-// import { useEffect } from 'react';
+import useNotificationApis from './Components/Helper/notification.hooks';
 
 
 function App(props) {
   const theme = useTheme()
-  // const { createForm } = useFormApis();
-  // useEffect(() => {
-  //   createForm({
-  //     name: "Form 3",
-  //     description: "Desc",
-  //     user: "6414d0bf2fdd39855faa410d"
-  //   })
-  // })
   const { user } = useSelector(state => state.auth);
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   console.log(process.env.REACT_APP_mode);

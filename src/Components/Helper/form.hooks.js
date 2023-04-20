@@ -14,16 +14,25 @@ export default function useFormApis() {
       name: formName,
       description: formDesc,
       image: formImg,
-      user: user?._id
+      user: user?._id,
+      shared: {
+        user: user?._id,
+        role: "Owner"
+      }
     })
       .then((res) => {
         console.log(res);
-        const { idArr, newDict } = arrayToReducer(res);
+
+        const { idArr, newDict } = arrayToReducer([res]);
+        formIds.unshift(idArr)
         dispatch({
           type: "AddForm",
           payload: {
-            formIds: idArr.reverse(),
-            formsDictionary: newDict
+            formIds,
+            formsDictionary: {
+              ...formsDictionary,
+              ...newDict
+            },
           }
         })
         // setLoading(false);
@@ -36,20 +45,29 @@ export default function useFormApis() {
       formId
     })
       .then((res) => {
-        console.log(res);
-        const { idArr, newDict } = arrayToReducer(res);
+        // console.log(res);
+        // const { idArr, newDict } = arrayToReducer([res]);
+        formIds.map((form, index) => {
+          if (form == formId)
+            formIds.splice(index, 1)
+        })
+        delete formsDictionary[`${formId}`]
         dispatch({
           type: "AddForm",
           payload: {
-            formIds: idArr.reverse(),
-            formsDictionary: newDict
+            formIds,
+            formsDictionary
           }
         })
         // setLoading(false);
       })
   }
   const getForms = async () => {
-    setLoading(true);
+    // if (formIds.length > 0) {
+    //   return;
+    // }
+    // else {
+    // setLoading(true);
     Api.post('/form/getForms', {
       user: user?._id
     })
@@ -63,8 +81,9 @@ export default function useFormApis() {
             formsDictionary: newDict
           }
         })
-        setLoading(false);
+        // setLoading(false);
       })
+    // }
   }
   return {
     createForm,
