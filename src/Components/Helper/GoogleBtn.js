@@ -21,7 +21,7 @@ export default function GoogleBtn() {
                 // The signed-in user info.
                 let user = result.user;
                 console.log(result, "Result");
-                Api.post('/user/getUpdatedUser', {
+                Api.post('/user/getUpdatedUser',{
                     email: user.email,
                     name: user.displayName,
                     firebaseUid: user.uid,
