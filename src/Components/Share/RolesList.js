@@ -39,15 +39,17 @@ export default function RolesList(props) {
             >
                 <Box>
                     {roles.map((currentRole) => {
-                        return <Box key={currentRole} sx={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: "center",
-                            maxHeight: 300,
-                            minWidth: 100,
-                            px: 1,
-                            cursor: 'pointer'
-                        }}>
+                        return <Box
+                            key={currentRole}
+                            sx={{
+                                display: "flex",
+                                justifyContent: "space-between",
+                                alignItems: "center",
+                                maxHeight: 300,
+                                minWidth: 100,
+                                px: 1,
+                                cursor: 'pointer'
+                            }}>
                             <Box>
                                 <Typography variant="body1">{currentRole}</Typography>
                             </Box>

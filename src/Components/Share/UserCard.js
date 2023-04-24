@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Avatar, Box, IconButton, Paper, Typography } from '@mui/material'
 import { useSelector } from 'react-redux';
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
@@ -6,6 +6,7 @@ import RolesList from './RolesList';
 export default function UserCard(props) {
     const { user, setAnchorEl, anchorEl, form } = props
     // const { usersDictionary, userIds } = useSelector((state) => state.users)
+    const [role, setRole] = useState("None");
     return (
         <>
 
@@ -54,6 +55,7 @@ export default function UserCard(props) {
                         {form?.shared?.map((share) => {
                             console.log(share, "Share", share?.role)
                             if (share?.user?._id === user?._id) {
+                                // setRole(share?.role || "None")
                                 if (share?.role === "Owner") {
                                     return (
                                         <><Typography variant="caption" sx={{
@@ -100,8 +102,8 @@ export default function UserCard(props) {
             </Box>
             {
                 form?.shared?.map((share) => {
-                    if (share?.user?._id === user?._id)
-                        return <RolesList key={share?._id} anchorEl={anchorEl} setAnchorEl={setAnchorEl} form={form} role={share?.role} />
+                    // if (share?.user?._id === user?._id)
+                    return <RolesList key={share?._id} anchorEl={anchorEl} setAnchorEl={setAnchorEl} form={form} role={share?.role || "None"} />
                     // else
                     //     return <RolesList key={share?._id} anchorEl={anchorEl} setAnchorEl={setAnchorEl} form={form} role={share?.role || "None"} />
                 })
