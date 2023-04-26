@@ -7,12 +7,6 @@ let Api = null;
 // Api = axios.create({ baseURL: 'https://super-forms.onrender.com' });
 Api = axios.create({ baseURL: 'https://super-forms-server-yo4jw.ondigitalocean.app/super-forms-server2' });
 
-
-
-
-
-
-
 Api.interceptors.response.use(
     (response) => response.data,
     (error) => {
