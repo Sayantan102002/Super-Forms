@@ -27,10 +27,11 @@ export default function About() {
     <Box sx={{
       display: "flex",
       flexDirection: "row",
-      justifyContent: "flex-start",
+      justifyContent: "center",
       width: "100%",
-      // height: "100vh",
+      height: "100%",
       border: '1px solid red',
+      // boxSizing: "border-box",
 
     }}>
       {/* <FormTab /> */}
@@ -56,9 +57,13 @@ export default function About() {
       <Box sx={{
         display: "flex",
         flexDirection: "row",
-        width: { md: "40%", xs: '100%' },
-        m: 3,
-        height: '100%'
+        // border: '1px solid',
+        width: { md: "80%", xs: '100%' },
+        // boxSizing: "border-box",
+        // m: 3,
+        my: 2,
+        // mx: 3,
+        height: '80%'
 
       }}>
         <SignIn />

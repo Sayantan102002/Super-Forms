@@ -29,7 +29,7 @@ export default function FormCard(props) {
     const history = useHistory();
     const handleClick = () => {
         history.push({
-            pathname: "/dashboard/form/" + data?.name,
+            pathname: "/dashboard/form/" + data?._id,
             state: { questions: data?.questions }
         })
     }
