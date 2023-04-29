@@ -7,7 +7,7 @@ import { TextField } from '@mui/material';
 export default function MultipleSelect() {
   return (
     <FormGroup >
-      <FormControlLabel control={<Checkbox defaultChecked />} label={<TextField/>} />
+      <FormControlLabel control={<Checkbox defaultChecked />} label={<TextField variant='standard' />} />
     </FormGroup>
   );
 }

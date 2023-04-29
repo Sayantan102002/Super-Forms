@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useDebounce } from 'react-use';
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { IconButton, Paper } from "@mui/material";
+import { IconButton, Paper, Typography } from "@mui/material";
 import AnswerType from "./answer.type.renderer";
 import QuestionSelector from "./QuestionSelector";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
@@ -14,8 +15,24 @@ export default function QuestionCard(props) {
   const [options, setOptions] = useState(question?.options || "");
   const [optionCols, setOptionCols] = useState(question?.optionCols || "");
   const [type, setType] = useState(question?.type || "Multiple Choice");
-
-  const { createQuestion, deleteQuestion } = useQuestionApis(formId);
+  const [status, setStatus] = useState("Saved")
+  const { createQuestion, updateQuestion, deleteQuestion, getForms } = useQuestionApis(formId);
+  // useEffect(()=>{
+  useDebounce(() => {
+    // setStatus("Updating....")
+    updateQuestion({
+      questionObj: {
+        _id: question._id,
+        questionText,
+        questionImage,
+        options,
+        optionCols,
+        type
+      }
+    })
+    setStatus("Saved")
+  }, 2000, [questionText, questionImage, options, optionCols, type])
+  // },[questionText,questionImage,options,optionCols,type])
   const typeToval = (type) => {
     switch (type) {
       case "Multiple Choice":
@@ -52,7 +69,11 @@ export default function QuestionCard(props) {
       sx={{
         // "& > :not(style)": { m: 1, width: "25ch" },
         // border: '1px solid red',
-        width: "45%",
+        width: {
+          lg: "45%",
+          sm: "100%",
+          md: "50%"
+        },
         padding: "20px",
         margin: "2vh 0"
       }}
@@ -68,7 +89,10 @@ export default function QuestionCard(props) {
             variant="filled"
             fullWidth
             value={questionText}
-            onChange={(e) => setQuestionText(e.target.value)}
+            onChange={(e) => {
+              setStatus("Updating....")
+              setQuestionText(e.target.value)
+            }}
             sx={{ m: "1" }}
           />
         </Box>
@@ -76,20 +100,25 @@ export default function QuestionCard(props) {
           <QuestionSelector
             val={val}
             setValue={setValue}
+            setStatus={setStatus}
           />
         </Box>
       </Box>
-      <AnswerType val={val} setType={setType} />
-      <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end' }}>
-        <IconButton>
-          <AddCircleOutlineIcon onClick={() => {
-            createQuestion(formId)
-          }} />
+      <AnswerType val={val} setType={setType} setStatus={setStatus} />
+      <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center' }}>
+        <Typography variant="caption">
+          {status}
+        </Typography>
+        <IconButton onClick={() => {
+          createQuestion(formId)
+          // getForms(formId)
+        }} >
+          <AddCircleOutlineIcon />
         </IconButton>
-        <IconButton>
-          <DeleteOutlineIcon onClick={() => {
-            deleteQuestion(question._id)
-          }} />
+        <IconButton onClick={() => {
+          deleteQuestion(question._id)
+        }} >
+          <DeleteOutlineIcon />
         </IconButton>
       </Box>
     </Paper>

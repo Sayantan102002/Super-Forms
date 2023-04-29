@@ -7,12 +7,12 @@ export default function LongAnswer() {
     <Box
       component="form"
       sx={{
-        '& > :not(style)': { m: 1, width: '45ch' },
+        '& > :not(style)': { m: 1, width: '60ch' },
       }}
       noValidate
       autoComplete="off"
     >
-      <TextField id="outlined-basic" label="Long-Answer Text" variant="outlined" disabled={true} />
+      <TextField id="outlined-basic" label="Long-Answer Text" variant="standard" disabled={true} />
 
     </Box>
   );

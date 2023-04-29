@@ -7,12 +7,12 @@ export default function ShortAnswer() {
     <Box
       component="form"
       sx={{
-        '& > :not(style)': { m: 1, width: '25ch' },
+        '& > :not(style)': { m: 1, width: '40ch' },
       }}
       noValidate
       autoComplete="off"
     >
-      <TextField id="outlined-basic" label="Short-Answer Text" variant="outlined" disabled={true} />
+      <TextField id="outlined-basic" label="Short-Answer Text" variant="standard" disabled={true} />
 
     </Box>
   );
