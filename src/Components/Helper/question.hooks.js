@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import Api from "./Api"
 import arrayToReducer from './arrayToReducer';
@@ -7,35 +7,36 @@ export default function useQuestionApis(formId) {
     const { user } = useSelector(state => state.auth)
     const [loading, setLoading] = useState(false);
     const [questions, setQuestions] = useState([]);
+    const [State, setState] = useState(0);
     const [questionIds, setQuestionIds] = useState([])
     const [questionsDict, setQuestionsDict] = useState({})
     // let form = formsDictionary[formId]
-    const getForms = (formId) => {
-        // if (questionIds.length == 0) {
-        // setLoading(true)
-        Api.post("/form/getFormById", {
-            formId
-        })
-            .then((res) => {
-                const { idArr, newDict } = arrayToReducer(res?.questions);
-                setQuestionIds(idArr)
-                setQuestionsDict(newDict)
-                // console.log(questionIds, questionsDict)
-                // setQuestions(res?.questions)
-                // setLoading(false)
-            })
-        // }
-        // else {
-        console.log(questionIds, questionsDict);
-        // console.log(questions);
-        // }
-    }
-    useEffect(() => {
-        getForms(formId)
-        // return {
-
-        // }
-    }, [questionIds, formId])
+    // const getForms = useCallback((formId) => {
+    //     // if (questionIds.length == 0) {
+    //     // setLoading(true)
+    //     Api.post("/form/getFormById", {
+    //         formId
+    //     })
+    //         .then((res) => {
+    //             const { idArr, newDict } = arrayToReducer(res?.questions);
+    //             setQuestionIds(idArr)
+    //             setQuestionsDict(newDict)
+    //             // console.log(questionIds, questionsDict)
+    //             // setQuestions(res?.questions)
+    //             // setLoading(false)
+    //         })
+    //     // }
+    //     // else {
+    //     console.log(questionIds, questionsDict);
+    //     // console.log(questions);
+    //     // }
+    //     return questionIds.length
+    // }, [questionIds.length, Object.keys(questionsDict).length])
+    // useEffect(() => {
+    //     setState(getForms(formId))
+    //     // return {
+    //     // }
+    // }, [getForms, formId])
     // useEffect(()=>{
     // useEffect(() => {
     //     getForms(formId)
@@ -102,7 +103,7 @@ export default function useQuestionApis(formId) {
         createQuestion,
         updateQuestion,
         deleteQuestion,
-        getForms,
+        // getForms,
         questionIds,
         questionsDict,
         loading

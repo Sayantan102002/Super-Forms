@@ -9,14 +9,19 @@ import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import useQuestionApis from "../../Helper/question.hooks";
 export default function QuestionCard(props) {
-  let { question, formId } = props;
+  let { question, formId, createQuestion, deleteQuestion, index } = props;
+
   const [questionText, setQuestionText] = useState(question?.questionText || "");
   const [questionImage, setQuestionImage] = useState(question?.questionImage || "");
   const [options, setOptions] = useState(question?.options || "");
   const [optionCols, setOptionCols] = useState(question?.optionCols || "");
   const [type, setType] = useState(question?.type || "Multiple Choice");
   const [status, setStatus] = useState("Saved")
-  const { createQuestion, updateQuestion, deleteQuestion, getForms } = useQuestionApis(formId);
+  // const { createQuestion, updateQuestion, deleteQuestion, getForms, questionIds } = useQuestionApis(formId);
+  const { updateQuestion } = useQuestionApis(formId);
+  // useEffect(() => {
+  //   getForms(formId)
+  // }, [questionIds.length])
   // useEffect(()=>{
   useDebounce(() => {
     // setStatus("Updating....")
@@ -110,7 +115,7 @@ export default function QuestionCard(props) {
           {status}
         </Typography>
         <IconButton onClick={() => {
-          createQuestion(formId)
+          createQuestion(formId, index)
           // getForms(formId)
         }} >
           <AddCircleOutlineIcon />
