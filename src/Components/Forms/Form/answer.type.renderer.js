@@ -7,7 +7,8 @@ import MultipleChoice from "./Answer Types/Multiple Choice/multiple.choice";
 import ShortAnswer from "./Answer Types/Short.Answer";
 import LongAnswer from "./Answer Types/Long.Answer";
 export default function AnswerType(props) {
-  const { val, setType, setStatus } = props;
+  const { val, setType, setStatus, question } = props;
+
   const valueToOption = (value) => {
     // console.log(value);
     switch (value) {
@@ -16,7 +17,7 @@ export default function AnswerType(props) {
         return <MultipleSelect />;
       case 2:
         setType("Multiple Choice")
-        return <MultipleChoice />;
+        return <MultipleChoice question={question} />;
       case 3:
         setType("Short Answer")
         return <ShortAnswer />;

@@ -7,7 +7,7 @@ export default function LongAnswer() {
     <Box
       component="form"
       sx={{
-        '& > :not(style)': { m: 1, width: '60ch' },
+        '& > :not(style)': { m: 1, width: '80%' },
       }}
       noValidate
       autoComplete="off"

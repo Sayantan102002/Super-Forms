@@ -72,14 +72,14 @@ export default function useQuestionApis(formId) {
         })
     }
     const updateQuestion = async (questionObj) => {
-        setLoading(true)
+        // setLoading(true)
         Api.post('/form/question/update', questionObj).then((res) => {
             const { idArr, newDict } = arrayToReducer([res]);
             console.log(res)
             setQuestionIds(idArr)
             setQuestionsDict(newDict)
             setQuestions(res?.questions)
-            setLoading(false)
+            // setLoading(false)
             // setLoading(false);
             // console.log(formIds)
         })

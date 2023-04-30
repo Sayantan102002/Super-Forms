@@ -8,6 +8,12 @@ import QuestionSelector from "./QuestionSelector";
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 import useQuestionApis from "../../Helper/question.hooks";
+
+import FormGroup from '@mui/material/FormGroup';
+import FormControlLabel from '@mui/material/FormControlLabel';
+import { Android12Switch } from "../../Helper/Switch";
+
+
 export default function QuestionCard(props) {
   let { question, formId, createQuestion, deleteQuestion, index } = props;
 
@@ -17,6 +23,8 @@ export default function QuestionCard(props) {
   const [optionCols, setOptionCols] = useState(question?.optionCols || "");
   const [type, setType] = useState(question?.type || "Multiple Choice");
   const [status, setStatus] = useState("Saved")
+  const [required, setRequired] = useState(question?.required || false)
+  const [open, isOpen] = useState(question?.open);
   // const { createQuestion, updateQuestion, deleteQuestion, getForms, questionIds } = useQuestionApis(formId);
   const { updateQuestion } = useQuestionApis(formId);
   // useEffect(() => {
@@ -32,11 +40,13 @@ export default function QuestionCard(props) {
         questionImage,
         options,
         optionCols,
-        type
+        type,
+        required,
+        open
       }
     })
     setStatus("Saved")
-  }, 2000, [questionText, questionImage, options, optionCols, type])
+  }, 1500, [questionText, questionImage, options, optionCols, type, required, open])
   // },[questionText,questionImage,options,optionCols,type])
   const typeToval = (type) => {
     switch (type) {
@@ -76,18 +86,36 @@ export default function QuestionCard(props) {
         // border: '1px solid red',
         width: {
           lg: "45%",
-          sm: "100%",
+          xs: "80%",
           md: "50%"
         },
-        padding: "20px",
-        margin: "2vh 0"
+        py: 3,
+        px: {
+          xs: 2,
+          md: 2,
+          lg: 4
+        },
+        margin: "2vh 0",
+        borderRadius: 5
       }}
       variant="outlined"
       noValidate
       autoComplete="off"
     >
-      <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-        <Box sx={{ width: "60%" }}>
+      <Box sx={{
+        display: "flex", justifyContent: "space-between",
+        flexDirection: {
+          xs: "column",
+          md: "row"
+        }
+      }}>
+        <Box sx={{
+          width: {
+            xs: "100%",
+            md: "60%",
+
+          }
+        }}>
           <TextField
             id="outlined-basic"
             label="Name"
@@ -101,7 +129,18 @@ export default function QuestionCard(props) {
             sx={{ m: "1" }}
           />
         </Box>
-        <Box>
+        <Box sx={{
+          width: {
+            xs: "100%",
+            md: "fit-content"
+            // md: "100%",
+            // lg: "100%"
+          },
+          py: {
+            xs: 1,
+            md: 0
+          }
+        }}>
           <QuestionSelector
             val={val}
             setValue={setValue}
@@ -109,22 +148,69 @@ export default function QuestionCard(props) {
           />
         </Box>
       </Box>
-      <AnswerType val={val} setType={setType} setStatus={setStatus} />
-      <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center' }}>
-        <Typography variant="caption">
-          {status}
-        </Typography>
-        <IconButton onClick={() => {
-          createQuestion(formId, index)
-          // getForms(formId)
-        }} >
-          <AddCircleOutlineIcon />
-        </IconButton>
-        <IconButton onClick={() => {
-          deleteQuestion(question._id)
-        }} >
-          <DeleteOutlineIcon />
-        </IconButton>
+      <Box sx={{
+        pt: 1,
+        width: {
+          xs: "100%",
+          md: "100%"
+        }
+      }}>
+        <AnswerType val={val} setType={setType} setStatus={setStatus} question={question} />
+
+      </Box>
+      <Box sx={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', pt: 2 }}>
+        <Box>
+          {/* This is a component */}
+          <FormControlLabel
+            control={<Android12Switch checked={open} onChange={(e) => {
+              setStatus("Updating....")
+              isOpen(e.target.checked)
+            }} />}
+            label={open ? "Open" : "Closed"}
+          />
+        </Box>
+        <Box sx={{
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center"
+        }}>
+          <Typography variant="caption" sx={{
+            pr: 2,
+            display: {
+              xs: "none",
+              md: "flex"
+            }
+          }}>
+            {status}
+          </Typography>
+          <FormControlLabel
+            control={<Android12Switch checked={required} onChange={(e) => {
+              setStatus("Updating....")
+              setRequired(e.target.checked)
+            }}
+            />}
+            label={
+              <Typography variant="body1" sx={required ? {
+                textDecoration: "none"
+              } :
+                {
+                  textDecoration: "line-through"
+                }}>Required</Typography>
+            }
+          />
+          <IconButton onClick={() => {
+            createQuestion(formId, index)
+            // getForms(formId)
+          }} >
+            <AddCircleOutlineIcon />
+          </IconButton>
+          <IconButton onClick={() => {
+            deleteQuestion(question._id)
+          }} >
+            <DeleteOutlineIcon />
+          </IconButton>
+
+        </Box>
       </Box>
     </Paper>
   );

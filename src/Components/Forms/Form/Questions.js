@@ -61,7 +61,7 @@ const Questions = (props) => {
         form: formId,
         user: user?._id,
         type: "Short Answer",
-        questionText: "Ques"
+        // questionText: " "
       },
       index
 
@@ -138,7 +138,13 @@ const Questions = (props) => {
 
 
   return (
-    <Box sx={{ display: 'flex', flexDirection: 'column', border: '1px solid blue', alignItems: 'center', justifyContent: 'center', minHeight: "80vh", minWidth: '100%' }}>
+    <Box sx={{
+      display: 'flex', flexDirection: 'column', border: '1px solid blue', alignItems: 'center', justifyContent: 'center', minHeight: "80vh", minWidth: '100%',
+      mb: {
+        xs: 8,
+        md: 0
+      }
+    }}>
       {/* <QuestionCard /> */}
       {!loading ? <>
         {

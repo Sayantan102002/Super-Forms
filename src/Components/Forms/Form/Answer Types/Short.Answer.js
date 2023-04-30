@@ -7,7 +7,7 @@ export default function ShortAnswer() {
     <Box
       component="form"
       sx={{
-        '& > :not(style)': { m: 1, width: '40ch' },
+        '& > :not(style)': { width: '40%' },
       }}
       noValidate
       autoComplete="off"
