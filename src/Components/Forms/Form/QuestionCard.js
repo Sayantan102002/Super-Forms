@@ -86,7 +86,7 @@ export default function QuestionCard(props) {
         // border: '1px solid red',
         width: {
           lg: "45%",
-          xs: "80%",
+          xs: "85%",
           md: "50%"
         },
         py: 3,
