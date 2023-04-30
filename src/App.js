@@ -16,7 +16,7 @@ function App(props) {
   const theme = useTheme()
   const { user } = useSelector(state => state.auth);
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
-  console.log(process.env.REACT_APP_mode);
+  console.log(process.env.NODE_ENV);
   return (
     <ConnectedRouter history={props.history}>
       <Switch>

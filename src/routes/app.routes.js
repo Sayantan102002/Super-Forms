@@ -31,10 +31,10 @@ export default function AppRoutes() {
             path="/settings"
             component={Settings}
         />,
-        // <Route
-        //     exact
-        //     path="*"
-        //     render={() => <Redirect to="/dashboard" />}
-        // />
+        <Route
+            exact
+            path="/"
+            render={() => <Redirect to="/dashboard" />}
+        />
     ]
 }
