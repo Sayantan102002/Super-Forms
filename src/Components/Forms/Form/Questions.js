@@ -139,7 +139,7 @@ const Questions = (props) => {
 
   return (
     <Box sx={{
-      display: 'flex', flexDirection: 'column', border: '1px solid blue', alignItems: 'center', justifyContent: 'center', minHeight: "80vh", minWidth: '100%',
+      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: "80vh", minWidth: '100%',
       mb: {
         xs: 8,
         md: 0
