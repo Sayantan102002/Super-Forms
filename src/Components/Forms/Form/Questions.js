@@ -25,7 +25,7 @@ const Questions = (props) => {
   // let form = formsDictionary[formId]
   const getForm = useCallback((formId) => {
     // if (questionIds.length == 0) {
-    // setLoading(true)
+    setLoading(true)
     Api.post("/form/getFormById", {
       formId
     })
@@ -35,7 +35,7 @@ const Questions = (props) => {
         setQuestionsDict(newDict)
         // console.log(questionIds, questionsDict)
         // setQuestions(res?.questions)
-        // setLoading(false)
+        setLoading(false)
       })
     // }
     // else {
@@ -138,31 +138,52 @@ const Questions = (props) => {
 
 
   return (
-    <Box sx={{
-      display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: "80vh", minWidth: '100%',
+    <Box sx={loading ? {
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      minHeight: "80vh",
+      minWidth: '100%',
+      // border: "1px solid red",
       mb: {
         xs: 8,
         md: 0
       }
-    }}>
+    } :
+      {
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        minHeight: "80vh",
+        minWidth: '100%',
+        // border: "1px solid red",
+        mb: {
+          xs: 8,
+          md: 0
+        }
+      }
+    }>
       {/* <QuestionCard /> */}
-      {!loading ? <>
-        {
-          questionIds.map((id, index) => {
-            const question = questionsDict[id];
-            return (
-              <QuestionCard
-                key={id}
-                index={index}
-                question={question}
-                formId={formId}
-                // updateQuestion={updateQuestion}
-                deleteQuestion={deleteQuestion}
-                createQuestion={createQuestion}
-              />
-            )
-          })
-        }</> : <CircularProgress />}
+      {!loading ?
+        <>
+          {
+            questionIds.map((id, index) => {
+              const question = questionsDict[id];
+              return (
+                <QuestionCard
+                  key={id}
+                  index={index}
+                  question={question}
+                  formId={formId}
+                  // updateQuestion={updateQuestion}
+                  deleteQuestion={deleteQuestion}
+                  createQuestion={createQuestion}
+                />
+              )
+            })
+          }</> : <CircularProgress />}
 
 
 
